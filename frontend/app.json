@@ -1,0 +1,58 @@
+{
+    "pages": [
+        "pages/community/community",
+        "pages/follow/follow",
+        "pages/me/me",
+        "pages/publish/publish",
+        "pages/detail/detail",
+        "pages/collect/collect",
+        "pages/browse/browse"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "大学生资源分享平台",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "custom": true,
+        "list": [
+            {
+                "pagePath": "pages/community/community",
+                "text": "首页",
+                "iconPath": "/static/image/发现.png",
+                "selectedIconPath": "/static/image/发现1.png"
+            },
+            {
+                "pagePath": "pages/follow/follow",
+                "text": "关注",
+                "iconPath": "/static/image/关注.png",
+                "selectedIconPath": "/static/image/关注1.png"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "text": "我的",
+                "iconPath": "/static/image/我的.png",
+                "selectedIconPath": "/static/image/我的1.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "usingComponents": {
+        "t-icon": "tdesign-miniprogram/icon/icon",
+        "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
+        "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",
+        "t-skeleton": "tdesign-miniprogram/skeleton/skeleton",
+        "t-cell": "tdesign-miniprogram/cell/cell",
+        "t-message": "tdesign-miniprogram/message/message",
+        "t-image": "tdesign-miniprogram/image/image",
+        "t-fab": "tdesign-miniprogram/fab/fab",
+        "t-button": "tdesign-miniprogram/button/button",
+        "t-input": "tdesign-miniprogram/input/input",
+        "t-upload": "tdesign-miniprogram/upload/upload",
+        "t-navbar": "tdesign-miniprogram/navbar/navbar",
+        "t-avatar": "tdesign-miniprogram/avatar/avatar",
+        "t-loading": "tdesign-miniprogram/loading/loading",
+        "t-search": "tdesign-miniprogram/search/search"
+    }
+}

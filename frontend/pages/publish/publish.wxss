@@ -1,0 +1,36 @@
+/* pages/publish/publish.wxss */
+.app {
+	position: relative;
+	background-color: #E3E3E3;
+	height: 100vh;
+}
+
+.a {
+	height: 20rpx;
+}
+
+.title {
+	background-color: white;
+	height: 80rpx;
+	width: 100%;
+	/* margin-top: 150rpx; */
+}
+
+.content {
+	background-color: white;
+	height: 300rpx;
+	width: 100%;
+	margin-top: 5rpx;
+}
+
+.b {
+	background-color: white;
+	height: 40rpx;
+}
+
+.publish {
+	position: absolute;
+	left: 50%;
+	margin-top: 100rpx;
+	transform: translate(-50%, -50%);
+}

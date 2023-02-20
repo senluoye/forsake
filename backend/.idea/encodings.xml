@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Competition-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Competition-Service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Course-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Course-Service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Dynamic-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Dynamic-Service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FeignClient/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FeignClient/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway-Service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sentiment-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sentiment-Service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/User-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/User-Service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,37 @@
+<view>
+	<t-message id="t-message" />
+	<!-- <view class="example-search">
+		<t-search model:value="{{searchValue}}" placeholder="搜索想要搜索的内容" shape="round" bindconfirm="search" />
+	</view> -->
+	<view class="nav">
+		<view bindtap="navSwitch" data-index="0" class="{{navState==0 ? 'nav-switch-style':''}}">学习</view>
+		<view bindtap="navSwitch" data-index="1" class="{{navState==1 ? 'nav-switch-style':''}}">比赛</view>
+		<view bindtap="navSwitch" data-index="2" class="{{navState==2 ? 'nav-switch-style':''}}">就业/创业</view>
+	</view>
+	<swiper bindchange="bindchange" current="{{navState}}" class="swiper">
+		<block>
+			<swiper-item>
+				<view class="box" wx:if="{{isLoading}}" size="64rpx">
+					<t-loading theme="spinner" size="40rpx" text="加载中" layout="vertical" class="wrapper" />
+				</view>
+				<view wx:else>
+					<scroll-view class="scroll" enhanced :show-scrollbar="false" scroll-y refresher-triggered="{{isRefresh}}" lower-threshold='100' refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-background="#E3E3E3" bindrefresherrefresh="pullDownRefresh" bindscrolltolower="loadMore">
+						<view class="dynamic-item" wx:for="{{dynamic.list}}" wx:key="id">
+							<dynamic dynamic="{{item}}" />
+						</view>
+					</scroll-view>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view class="style-roll">
+					<text>左右可滑动2</text>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view class="style-roll">
+					<text>左右可滑动3</text>
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>

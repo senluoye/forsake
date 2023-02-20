@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "t-avatar": "tdesign-miniprogram/avatar/avatar"
+    }
+}

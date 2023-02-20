@@ -1,0 +1,38 @@
+<view>
+	<t-message id="t-message" />
+	<!-- 顶栏 -->
+	<view class="topic">
+		<t-avatar class="avatar" image="{{dynamic.avatarUrl}}" />
+		<view class="top-center">
+			<view class="t" />
+			<span class="name">{{dynamic.nickName}}</span>
+			<view class="t1" />
+			<span class="date">{{dynamic.updateAt}}</span>
+		</view>
+	</view>
+	<!-- 主题内容 -->
+	<view class="main-content">
+		<!-- 标题 -->
+		<view class="tital">{{dynamic.title}}</view>
+		<!-- 内容 -->
+		<view class="content">
+			<text>
+				{{dynamic.content}}
+			</text>
+		</view>
+		<!-- 照片/视频 -->
+		<view class="image-content">
+			<view wx:for="{{dynamic.dynamicFileList}}" wx:for-item="file" wx:key="id">
+				<t-image shape="round" src="{{file.path}}" mode="aspectFill" width="110" height="110" style="margin-left: 10rpx;" />
+			</view>
+		</view>
+	</view>
+
+	<!-- 操作 -->
+	<view class="operator">
+		<view bindtap="star">点赞 {{dynamic.likeCount}}</view>
+		<view bindtap="comment">评论 {{dynamic.commentCount}} </view>
+		<view bindtap="collect">收藏 {{dynamic.collectCount}}</view>
+	</view>
+	<view class="b" />
+</view>

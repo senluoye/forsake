@@ -1,0 +1,35 @@
+.nav {
+	display: flex;
+	justify-content: space-around;
+	padding: 20rpx;
+	font-size: 30rpx;
+}
+
+.scroll {
+	height: 930rpx;
+	background-color: #E3E3E3;
+}
+
+.nav-switch-style {
+	color: blue;
+}
+
+.style-default {
+	background-color: rgb(247, 229, 130);
+	padding: 100rpx 0;
+	text-align: center;
+}
+
+.style-roll {
+	background-color: rgb(130, 177, 247);
+	height: 100%;
+}
+
+.swiper {
+	height: 1020rpx;
+}
+
+.dynamic-item {
+	background-color: white;
+	/* margin-bottom: 20rpx; */
+}

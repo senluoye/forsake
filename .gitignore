@@ -1,0 +1,21 @@
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# Node.js
+frontend/node_modules/
+frontend/miniprogram_npm/
+
+backend-springboot/src/main/resources/*.yml
+backend-springboot/src/main/resources/*.properties
+
+*.yml
+*.properties

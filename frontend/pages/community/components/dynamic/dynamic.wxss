@@ -1,0 +1,67 @@
+/* pages/community/components/dynamic.wxss */
+
+.topic {
+	height: 100rpx;
+
+}
+
+.avatar {
+	float: left;
+	margin-top: 15rpx;
+	margin-left: 20rpx;
+	margin-right: 20rpx;
+}
+
+.top-center {
+	margin-top: 10rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 30rpx;
+}
+
+.t {
+	height: 15rpx;
+}
+
+.t1 {
+	height: 10rpx;
+}
+
+.name {
+	font-weight: 700;
+}
+
+.date {
+	font-size: 25rpx;
+}
+
+.main-content {
+	margin-left: 15rpx;
+}
+
+.tital {
+	margin-top: 20rpx;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.content {
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+
+.image-content {
+	display: flex;
+}
+
+.operator {
+	/* width: 750rpx; */
+	display: flex;
+	justify-content: space-between;
+	margin: 10rpx 100rpx;
+}
+
+.b {
+	height: 5rpx;
+}

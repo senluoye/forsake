@@ -1,0 +1,5 @@
+<t-tab-bar value="{{value}}" bindchange="onChange" custom-style="height: 120rpx">
+	<t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}" icon="{{value === index ? item.selectedIconPath : item.iconPath}}">
+		{{item.text}}
+	</t-tab-bar-item>
+</t-tab-bar>

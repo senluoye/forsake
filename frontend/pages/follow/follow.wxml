@@ -1,0 +1,3 @@
+<view>
+	<t-fab icon="add" bind:click="handleClick" aria-label="增加" custom-style="right:50rpx;bottom:150rpx"></t-fab>
+</view>
