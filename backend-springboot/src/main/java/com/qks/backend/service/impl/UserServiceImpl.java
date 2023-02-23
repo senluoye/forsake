@@ -88,9 +88,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
 
         String token = JwtUtil.createTokenByUserId(user.getId());
-        Map<String, Object> data = new HashMap<>();
-        data.put("token", token);
-        return R.success(data);
+        user.setToken(token);
+        userMapper.updateById(user);
+
+        return R.map("token", token);
     }
 
     @Override

@@ -37,5 +37,6 @@ public class DynamicVO {
     private Boolean isLike;
     private Boolean isCollect;
     private Integer state;
+    private String message;
 
 }

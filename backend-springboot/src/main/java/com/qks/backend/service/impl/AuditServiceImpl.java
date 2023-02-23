@@ -92,19 +92,18 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, RecordAudit>
                             new LambdaQueryWrapper<DynamicFile>().eq(DynamicFile::getDynamicId, dynamic.getId())
                     );
 
-                    Long id = null;
-                    Integer state = null;
+                    RecordAudit nowRecordAudit = new RecordAudit();
                     for (RecordAudit recordAudit : recordAuditList) {
                         if (recordAudit.getRecordId().equals(dynamic.getId())) {
-                            id = recordAudit.getId();
-                            state = recordAudit.getState();
+                            nowRecordAudit = recordAudit;
                             break;
                         }
                     }
 
                     return DynamicVO.builder()
-                            .id(id)
-                            .state(state)
+                            .id(nowRecordAudit.getId())
+                            .message(nowRecordAudit.getMessage())
+                            .state(nowRecordAudit.getState())
                             .recordId(dynamic.getId())
                             .title(dynamic.getTitle())
                             .createAt(dynamic.getCreateAt())

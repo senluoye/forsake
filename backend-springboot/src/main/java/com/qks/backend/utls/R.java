@@ -36,4 +36,10 @@ public class R {
         return success(data, 0, null);
     }
 
+    public static ResVO<Map<String, Object>> map(String des, Object object, String msg) {
+        Map<String, Object> data = new HashMap<>();
+        data.put(des, object);
+        return success(data, 0, msg);
+    }
+
 }

@@ -28,6 +28,7 @@ public class User extends Model {
     @Column(comment = "年龄")
     private Integer age;
 
+
     @Column(comment = "邮箱")
     private String email;
 
@@ -51,4 +52,6 @@ public class User extends Model {
     private Integer gender;
     private String language;
     private String province;
+
+    private String token;
 }
