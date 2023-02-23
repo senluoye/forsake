@@ -87,6 +87,14 @@ public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFol
 
         return R.map("userFollowId", userFollow.getId());
     }
+
+    @Override
+    public ResVO<UserFollowData> getFollowData(Long userId) {
+        UserFollowData userFollowData = userFollowDataService.getBaseMapper().selectOne(
+                new LambdaQueryWrapper<UserFollowData>().eq(UserFollowData::getUserId, userId)
+        );
+        return R.success(userFollowData);
+    }
 }
 
 
