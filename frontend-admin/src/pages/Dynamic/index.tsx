@@ -1,47 +1,14 @@
 import React, { memo, useEffect, useState } from 'react';
-import {
-  Avatar,
-  Button,
-  Card,
-  MessagePlugin,
-  Space,
-  Image,
-  Pagination,
-  Input,
-  Row,
-  Col,
-  Select,
-  Loading,
-} from 'tdesign-react';
+import { MessagePlugin, Pagination, Select, Loading } from 'tdesign-react';
 import { IPage, IPageVO } from 'modules/global/page';
 import CommonStyle from 'styles/common.module.less';
 import classnames from 'classnames';
-import { IAuditVO } from 'modules/global/audit';
 
 import styles from './index.module.less';
 import axios from 'axios';
 import { BrowserRouterProps, useNavigate } from 'react-router-dom';
-
-interface IFile {
-  id: number;
-  createAt: string;
-  updateAt: string;
-  dynamicId: number;
-  path: string;
-  suffix: string;
-}
-
-interface IDynamic {
-  id: number;
-  recordId: number;
-  nickName: string;
-  avatarUrl: string;
-  title: string;
-  createAt: string;
-  updateAt: string;
-  content: string;
-  dynamicFileList: IFile[];
-}
+import { IDynamic } from 'modules/me/dynamic';
+import DynamicItem from './components/DynamicItem';
 
 const tempPageContent: IPage = {
   data: [],
@@ -66,6 +33,8 @@ const tempDynamicList: IDynamic[] = [
     updateAt: '',
     content: '',
     dynamicFileList: [],
+    state: 0,
+    message: '',
   },
 ];
 
@@ -81,13 +50,13 @@ const Dynamic: React.FC<BrowserRouterProps> = () => {
   const [pageVO, setPageVO] = useState<IPageVO>(tempPageVO);
   // 是否加载
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // 审核意见
-  const [message, setMessage] = useState<string>('');
-  // 审核结束后的按钮状态
-  const [auditStateMap, setAuditStateMap] = useState<Map<number, boolean>>(new Map([[0, true]]));
   // 选择器的值
   const [selectValue, setSelectValue] = useState<number>(0);
 
+  /**
+   * 检查token
+   * @returns
+   */
   const checkToken = () => {
     if (token == null || token === '') {
       navigate('/login');
@@ -113,6 +82,7 @@ const Dynamic: React.FC<BrowserRouterProps> = () => {
       if (!checkToken) return;
 
       setIsLoading(true);
+
       const tPage = page || pageVO;
       const { data } = await axios.post('/api/audit/list/dynamic', { ...tPage }, { headers: { token } });
       if (!data) {
@@ -150,7 +120,6 @@ const Dynamic: React.FC<BrowserRouterProps> = () => {
       for (let i = 0; i < dynamicList.length; i++) {
         stateMap.set(dynamicList[i].id, false);
       }
-      setAuditStateMap(stateMap);
 
       setIsLoading(false);
     })();
@@ -168,48 +137,11 @@ const Dynamic: React.FC<BrowserRouterProps> = () => {
     console.log(`pageInfo: ${JSON.stringify(pageInfo)}`);
   }, []);
 
-  const changeState = (id: number) => {
-    const newState = auditStateMap;
-    newState.set(id, false);
-    setAuditStateMap(newState);
-    console.log(auditStateMap);
-  };
-
-  /**
-   * 审核
-   * @param value
-   */
-  const auditHandler = async (value: boolean, item: IDynamic) => {
-    // 提交审核请求
-    const auditVO: IAuditVO = {
-      id: item.id,
-      message,
-      state: value === true ? 2 : 3,
-    };
-    const { data } = await axios.put('/api/audit/dynamic', { ...auditVO }, { headers: { token } });
-    if (data.code !== 0) {
-      MessagePlugin.error('审核失败: '.concat(data.msg), 1500);
-      return;
-    }
-    console.log(data);
-
-    // 修改审核按钮状态
-    changeState(item.id);
-  };
-
-  /**
-   * 修改审核意见
-   * @param e
-   */
-  const changeMessage = (e: string) => {
-    setMessage(e);
-  };
-
   /**
    * 修改查询范围
    * @param value
    */
-  const changeSelect = (state) => {
+  const changeSelect = (state: any) => {
     setSelectValue(state);
     const tPage = { currentPage: 0, state };
     console.log(tPage);
@@ -219,70 +151,6 @@ const Dynamic: React.FC<BrowserRouterProps> = () => {
   useEffect(() => {
     getNextPageContent();
   }, []);
-
-  const DynamicTSX: React.FC<BrowserRouterProps> = () => (
-    <div>
-      {dynamicList.map((item) => (
-        <Card
-          key={item.id}
-          title={item.nickName}
-          description={item.createAt.split('T')[0]}
-          bordered
-          headerBordered
-          hoverShadow
-          avatar={<Avatar size='40px' image={item.avatarUrl}></Avatar>}
-          style={{ width: '100%' }}
-        >
-          <div className={styles.title}>标题：{item.title}</div>
-          <div className={styles.content}>内容：{item.content}</div>
-          <div className={styles.image}>
-            {item.dynamicFileList.map((file) => (
-              <Space direction='vertical' key={file.id}>
-                <Image src={file.path} fit='cover' style={{ width: 120, height: 120, marginRight: 20 }} />
-              </Space>
-            ))}
-          </div>
-          <div>
-            <Row>
-              <Col span={10} key={1}>
-                <Input
-                  placeholder='请输入审核意见'
-                  onChange={(e) => {
-                    changeMessage(e);
-                  }}
-                  clearable
-                  autoWidth={false}
-                />
-              </Col>
-              <Col span={1} key={2}>
-                <Button
-                  style={{ width: 100 }}
-                  theme='default'
-                  variant='base'
-                  disabled={auditStateMap.get(item.id)}
-                  loading={false}
-                  onClick={() => auditHandler(true, item)}
-                >
-                  √
-                </Button>
-              </Col>
-              <Col span={1} key={3}>
-                <Button
-                  style={{ width: 100 }}
-                  theme='default'
-                  variant='base'
-                  loading={false}
-                  onClick={() => auditHandler(false, item)}
-                >
-                  x
-                </Button>
-              </Col>
-            </Row>
-          </div>
-        </Card>
-      ))}
-    </div>
-  );
 
   return (
     <div className={classnames(CommonStyle.pageWithPadding, CommonStyle.pageWithColor)}>
@@ -332,7 +200,17 @@ const Dynamic: React.FC<BrowserRouterProps> = () => {
               style={{ margin: '0 auto', marginLeft: '45%' }}
             />
           ) : (
-            <div>{dynamicList.length === 0 ? <div className={styles.noData}>没有数据</div> : <DynamicTSX />}</div>
+            <div>
+              {dynamicList.length === 0 ? (
+                <div className={styles.noData}>没有数据</div>
+              ) : (
+                <div>
+                  {dynamicList.map((item) => (
+                    <DynamicItem key={item.id} dynamic={item} />
+                  ))}
+                </div>
+              )}
+            </div>
           )}
           <Pagination
             className={styles.page}
