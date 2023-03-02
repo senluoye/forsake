@@ -37,6 +37,12 @@ Page({
         })
     },
 
+    addCommunity(e) {
+        wx.navigateTo({
+            url: '/pages/publish/publish',
+        })
+    },
+
     // 上拉刷新
     async pullDownRefresh(e) {
         this.setData({ isRefresh: true })

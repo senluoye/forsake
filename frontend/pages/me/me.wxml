@@ -16,7 +16,7 @@
 			<span class="name">{{userInfo.nickName}}</span>
 		</view>
 	</view>
-	<view></view>
+	<!-- <view></view> -->
 	<view class="demo-section__wrapper">
 		<t-cell-group theme="card">
 			<t-cell title="联系我们" hover arrow>

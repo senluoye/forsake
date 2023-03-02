@@ -15,7 +15,7 @@
 	margin-top: 30rpx;
 	height: 220rpx;
 	width: 600rpx;
-	background-color: white;
+	/* background-color: white; */
 }
 
 .top-title {
@@ -39,7 +39,7 @@
 }
 
 .demo-section__wrapper {
-	margin: 32rpx 0;
+	margin: 0;
 	width: 660rpx;
 }
 

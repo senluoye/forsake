@@ -20,6 +20,12 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        goDetail(e) {
+            const id = this.data.dynamic.id
+            wx.navigateTo({
+                url: '/pages/detail/detail?id=' + id,
+            })
+        },
 
         /**
          * 点赞

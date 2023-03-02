@@ -34,4 +34,5 @@
 			</swiper-item>
 		</block>
 	</swiper>
+	<t-fab icon="add" bind:click="addCommunity" aria-label="增加" custom-style="right:50rpx;bottom:150rpx"></t-fab>
 </view>

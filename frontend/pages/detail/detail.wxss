@@ -1,0 +1,84 @@
+.topic {
+	height: 130rpx;
+	width: 100%;
+	display: flex;
+}
+
+.avatar {
+	float: left;
+	margin-top: 15rpx;
+	margin-left: 20rpx;
+	margin-right: 20rpx;
+}
+
+.top-center {
+	margin-top: -30rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 30rpx;
+	width: 300rpx;
+}
+
+.guanzhu {
+	float: right;
+	margin-left: 100rpx;
+	margin-top: 30rpx;
+}
+
+.guanzhu-btn {
+	width: 150rpx;
+	height: 60rpx;
+	font-size: 10px;
+	border: 1px solid red;
+	background-color: white;
+}
+
+.t {
+	height: 15rpx;
+}
+
+.t1 {
+	height: 10rpx;
+}
+
+.name {
+	font-weight: 700;
+}
+
+.date {
+	font-size: 25rpx;
+}
+
+.main-content {
+	margin-left: 15rpx;
+}
+
+.tital {
+	/* margin-top: 20rpx; */
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.content {
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+
+.image-content {
+	display: flex;
+}
+
+.foot {
+	position: absolute;
+	top: 92%;
+}
+
+.operator {
+	display: flex;
+	justify-content: space-between;
+}
+
+.b {
+	height: 5rpx;
+}

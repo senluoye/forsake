@@ -1,8 +1,9 @@
 /* pages/community/components/dynamic.wxss */
 
 .topic {
-	height: 100rpx;
-
+	height: 130rpx;
+	width: 100%;
+	display: flex;
 }
 
 .avatar {
@@ -13,11 +14,26 @@
 }
 
 .top-center {
-	margin-top: 10rpx;
+	margin-top: -30rpx;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	margin-left: 30rpx;
+	width: 300rpx;
+}
+
+.guanzhu {
+	float: right;
+	margin-left: 100rpx;
+	margin-top: 30rpx;
+}
+
+.guanzhu-btn {
+	width: 150rpx;
+	height: 60rpx;
+	font-size: 10px;
+	border: 1px solid red;
+	background-color: white;
 }
 
 .t {
@@ -41,7 +57,7 @@
 }
 
 .tital {
-	margin-top: 20rpx;
+	/* margin-top: 20rpx; */
 	font-size: 18px;
 	font-weight: 700;
 }
@@ -60,6 +76,11 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 10rpx 100rpx;
+}
+
+.star {
+	width: 40rpx;
+	height: 40rpx;
 }
 
 .b {

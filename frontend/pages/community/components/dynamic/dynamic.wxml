@@ -9,11 +9,14 @@
 			<view class="t1" />
 			<span class="date">{{dynamic.updateAt}}</span>
 		</view>
+		<view class="guanzhu">
+			<button class="guanzhu-btn">+ 关注</button>
+		</view>
 	</view>
 	<!-- 主题内容 -->
-	<view class="main-content">
+	<view class="main-content" bindtap="goDetail">
 		<!-- 标题 -->
-		<view class="tital">{{dynamic.title}}</view>
+		<!-- <view class=" tital">{{dynamic.title}}</view> -->
 		<!-- 内容 -->
 		<view class="content">
 			<text>
@@ -30,9 +33,16 @@
 
 	<!-- 操作 -->
 	<view class="operator">
-		<view bindtap="star">点赞 {{dynamic.likeCount}}</view>
-		<view bindtap="comment">评论 {{dynamic.commentCount}} </view>
-		<view bindtap="collect">收藏 {{dynamic.collectCount}}</view>
+		<view bindtap="star">
+			<image src="/static/image/点赞.png" mode="" class="star" />
+			{{dynamic.likeCount}}
+		</view>
+		<view bindtap="comment">
+			<image src="/static/image/评论.png" mode="" class="star" /> {{dynamic.commentCount}}
+		</view>
+		<view bindtap="collect">
+			<image src="/static/image/收藏.png" mode="" class="star" /> {{dynamic.collectCount}}
+		</view>
 	</view>
 	<view class="b" />
 </view>

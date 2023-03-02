@@ -1,0 +1,11 @@
+<!--pages/detail/components/footer/footer.wxml-->
+<view class="foot">
+	<view class="comment">
+		<input type="text" placeholder="请输入评论" />
+	</view>
+	<view class="operator">
+		<view bindtap="star">点赞 {{dynamic.likeCount}}</view>
+		<view bindtap="comment">评论 {{dynamic.commentCount}} </view>
+		<view bindtap="collect">收藏 {{dynamic.collectCount}}</view>
+	</view>
+</view>
