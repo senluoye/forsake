@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qks.backend.dao.DynamicMapper">
+
+    <resultMap id="BaseResultMap" type="com.qks.backend.entity.po.Dynamic">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="content" column="content" jdbcType="BIGINT"/>
+            <result property="title" column="title" jdbcType="BIGINT"/>
+            <result property="readCount" column="read_count" jdbcType="BIGINT"/>
+            <result property="likeCount" column="like_count" jdbcType="BIGINT"/>
+            <result property="collectCount" column="collect_count" jdbcType="BIGINT"/>
+            <result property="createAt" column="create_at" jdbcType="TIMESTAMP"/>
+            <result property="updateAt" column="update_at" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,content,
+        title,read_count,like_count,
+        collect_count,create_at,update_at,
+        deleted
+    </sql>
+</mapper>
