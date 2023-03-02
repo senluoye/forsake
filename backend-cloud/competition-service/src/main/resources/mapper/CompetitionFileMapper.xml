@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qks.backend.dao.CompetitionFileMapper">
+<mapper namespace="com.qks.competition.dao.CompetitionFileMapper">
 
-    <resultMap id="BaseResultMap" type="com.qks.backend.entity.po.CompetitionFile">
+    <resultMap id="BaseResultMap" type="com.qks.work.entity.po.CompetitionFile">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="competitionId" column="competition_id" jdbcType="BIGINT"/>
             <result property="path" column="path" jdbcType="VARCHAR"/>

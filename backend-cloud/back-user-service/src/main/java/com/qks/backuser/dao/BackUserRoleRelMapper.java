@@ -1,7 +1,7 @@
 package com.qks.backuser.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.backend.entity.po.BackUserRoleRel;
+import com.qks.common.entity.po.BackUserRoleRel;
 
 /**
  * @ClassName BackUserMapper

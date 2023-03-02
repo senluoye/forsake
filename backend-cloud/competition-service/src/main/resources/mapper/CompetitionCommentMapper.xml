@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qks.backend.dao.CompetitionCommentMapper">
+<mapper namespace="com.qks.competition.dao.CompetitionCommentMapper">
 
-    <resultMap id="BaseResultMap" type="com.qks.backend.entity.po.CompetitionComment">
+    <resultMap id="BaseResultMap" type="com.qks.work.entity.po.CompetitionComment">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="userId" column="user_id" jdbcType="BIGINT"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>

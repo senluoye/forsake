@@ -1,7 +1,7 @@
 package com.qks.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.backend.entity.po.follow.UserFollowData;
+import com.qks.work.entity.po.follow.UserFollowData;
 
 /**
  * @author 15998

@@ -1,7 +1,7 @@
 package com.qks.admin.controller;
 
-import com.qks.commen.entity.vo.OverviewVO;
-import com.qks.commen.entity.vo.ResVO;
+import com.qks.common.entity.vo.OverviewVO;
+import com.qks.common.entity.vo.ResVO;
 import com.qks.admin.service.DataService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

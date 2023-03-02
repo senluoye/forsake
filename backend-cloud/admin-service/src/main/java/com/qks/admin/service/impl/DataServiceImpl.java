@@ -1,7 +1,7 @@
 package com.qks.admin.service.impl;
 
-import com.qks.commen.entity.vo.OverviewVO;
-import com.qks.commen.entity.vo.ResVO;
+import com.qks.common.entity.vo.OverviewVO;
+import com.qks.common.entity.vo.ResVO;
 import com.qks.admin.service.DataService;
 import org.springframework.stereotype.Service;
 

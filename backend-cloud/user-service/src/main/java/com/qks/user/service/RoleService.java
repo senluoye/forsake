@@ -1,7 +1,7 @@
 package com.qks.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.backend.entity.po.Role;
+import com.qks.work.entity.po.Role;
 
 /**
  * @author 15998

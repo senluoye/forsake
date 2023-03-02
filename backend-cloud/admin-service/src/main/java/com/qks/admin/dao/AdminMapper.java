@@ -1,7 +1,7 @@
 package com.qks.admin.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.backend.entity.po.BackUser;
+import com.qks.common.entity.po.BackUser;
 
 /**
  * @ClassName AdminMapper

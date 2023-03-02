@@ -1,10 +1,10 @@
 package com.qks.backuser.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.backend.entity.po.BackUser;
-import com.qks.backend.entity.vo.AdminLoginVO;
-import com.qks.backend.entity.vo.ResVO;
-import com.qks.backend.exception.ServiceException;
+import com.qks.common.entity.po.BackUser;
+import com.qks.common.entity.vo.AdminLoginVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
 
 import java.util.List;
 import java.util.Map;

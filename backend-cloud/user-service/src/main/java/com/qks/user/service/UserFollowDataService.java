@@ -1,7 +1,7 @@
 package com.qks.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.backend.entity.po.follow.UserFollowData;
+import com.qks.work.entity.po.follow.UserFollowData;
 
 /**
  * @author 15998

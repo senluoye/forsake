@@ -1,10 +1,10 @@
 package com.qks.backuser.controller;
 
-import com.qks.backend.entity.po.BackUser;
-import com.qks.backend.entity.vo.AdminLoginVO;
-import com.qks.backend.entity.vo.ResVO;
-import com.qks.backend.exception.ServiceException;
-import com.qks.backend.service.BackUserService;
+import com.qks.common.entity.po.BackUser;
+import com.qks.common.entity.vo.AdminLoginVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
+import com.qks.backuser.service.BackUserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

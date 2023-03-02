@@ -1,9 +1,6 @@
 package com.qks.admin.service.impl;
 
-import com.qks.user.dao.CompetitionMapper;
-import com.qks.user.dao.DynamicMapper;
-import com.qks.user.dao.WorkInfoMapper;
-import com.qks.user.service.AdminService;
+import com.qks.admin.service.AdminService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,14 +15,6 @@ import javax.annotation.Resource;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    @Resource
-    private DynamicMapper dynamicMapper;
-
-    @Resource
-    private CompetitionMapper competitionMapper;
-
-    @Resource
-    private WorkInfoMapper workInfoMapper;
 
 
 }

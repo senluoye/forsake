@@ -1,7 +1,7 @@
 package com.qks.admin.service;
 
-import com.qks.commen.entity.vo.OverviewVO;
-import com.qks.commen.entity.vo.ResVO;
+import com.qks.common.entity.vo.OverviewVO;
+import com.qks.common.entity.vo.ResVO;
 
 /**
  * @ClassName DataService

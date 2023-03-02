@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qks.backend.dao.DynamicCollectMapper">
+<mapper namespace="com.qks.dynamic.dao.DynamicCollectMapper">
 
-    <resultMap id="BaseResultMap" type="com.qks.backend.entity.po.DynamicCollect">
+    <resultMap id="BaseResultMap" type="com.qks.work.entity.po.DynamicCollect">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="dynamicId" column="dynamic_id" jdbcType="BIGINT"/>
             <result property="userId" column="user_id" jdbcType="BIGINT"/>
