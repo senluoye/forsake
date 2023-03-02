@@ -4,16 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.user.dao.DynamicCommentMapper;
-import com.qks.user.dao.DynamicMapper;
-import com.qks.user.dao.UserMapper;
-import com.qks.work.entity.enums.PageEnum;
-import com.qks.work.entity.po.DynamicComment;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
-import com.qks.user.service.DynamicCommentService;
-import com.qks.work.utls.R;
+import com.qks.dynamic.dao.DynamicCommentMapper;
+import com.qks.dynamic.dao.DynamicMapper;
+import com.qks.common.entity.enums.PageEnum;
+import com.qks.common.entity.po.DynamicComment;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
+import com.qks.dynamic.service.DynamicCommentService;
+import com.qks.common.helper.R;
+import com.qks.feignclient.service.UserClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +39,7 @@ public class DynamicCommentServiceImpl extends ServiceImpl<DynamicCommentMapper,
     private DynamicMapper dynamicMapper;
 
     @Resource
-    private UserMapper userMapper;
+    private UserClient userClient;
 
     @Override
     public ResVO<PageVO<List<DynamicComment>>> getDynamicCommentList(String dynamicId, Integer currentPage) throws ServiceException {
@@ -93,7 +93,7 @@ public class DynamicCommentServiceImpl extends ServiceImpl<DynamicCommentMapper,
             throw new ServiceException("动态不存在");
         }
 
-        if (userMapper.selectById(dynamicComment.getUserId()) == null) {
+        if (userClient.selectById(dynamicComment.getUserId()) == null) {
             throw new ServiceException("用户不存在");
         }
 

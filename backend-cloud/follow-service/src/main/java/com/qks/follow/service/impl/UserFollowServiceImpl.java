@@ -1,17 +1,17 @@
-package com.qks.user.service.impl;
+package com.qks.follow.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.user.dao.UserFollowMapper;
-import com.qks.work.entity.po.follow.UserFollow;
-import com.qks.work.entity.po.follow.UserFollowData;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.entity.vo.UserFollowVO;
-import com.qks.work.exception.ServiceException;
-import com.qks.user.service.UserFollowDataService;
-import com.qks.user.service.UserFollowService;
-import com.qks.user.service.UserService;
-import com.qks.work.utls.R;
+import com.qks.feignclient.service.UserClient;
+import com.qks.follow.dao.UserFollowMapper;
+import com.qks.common.entity.po.follow.UserFollow;
+import com.qks.common.entity.po.follow.UserFollowData;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.entity.vo.UserFollowVO;
+import com.qks.common.exception.ServiceException;
+import com.qks.follow.service.UserFollowDataService;
+import com.qks.follow.service.UserFollowService;
+import com.qks.common.helper.R;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -27,13 +27,13 @@ public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFol
 
     private final UserFollowMapper userFollowMapper;
     private final UserFollowDataService userFollowDataService;
-    private final UserService userService;
+    private final UserClient userClient;
 
     public UserFollowServiceImpl(UserFollowMapper userFollowMapper, UserFollowDataService userFollowDataService,
-                                 UserService userService) {
+                                 UserClient userClient) {
         this.userFollowMapper = userFollowMapper;
         this.userFollowDataService = userFollowDataService;
-        this.userService = userService;
+        this.userClient = userClient;
     }
 
     @Override
@@ -41,11 +41,11 @@ public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFol
         Long userId = userFollowVO.getUserId();
         Long followerId = userFollowVO.getFollowerId();
 
-        if (userService.getById(userId) == null) {
+        if (userClient.selectById(userId) == null) {
             throw new ServiceException("您关注的用户不存在");
         }
 
-        if (userService.getById(followerId) == null) {
+        if (userClient.selectById(followerId) == null) {
             throw new ServiceException("当前用户不存在");
         }
 

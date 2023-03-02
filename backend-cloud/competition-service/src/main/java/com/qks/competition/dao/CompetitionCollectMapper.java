@@ -1,7 +1,7 @@
 package com.qks.competition.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.work.entity.po.CompetitionCollect;
+import com.qks.common.entity.po.CompetitionCollect;
 
 /**
  * @author 15998

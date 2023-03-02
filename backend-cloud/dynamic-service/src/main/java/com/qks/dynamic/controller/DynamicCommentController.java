@@ -1,9 +1,9 @@
 package com.qks.dynamic.controller;
 
-import com.qks.work.entity.po.DynamicComment;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.po.DynamicComment;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
 import com.qks.dynamic.service.DynamicCommentService;
 import org.springframework.web.bind.annotation.*;
 

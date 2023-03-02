@@ -1,10 +1,10 @@
 package com.qks.dynamic.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.user.dao.DynamicFileMapper;
-import com.qks.work.entity.po.DynamicFile;
-import com.qks.work.exception.ServiceException;
-import com.qks.user.service.DynamicFileService;
+import com.qks.dynamic.dao.DynamicFileMapper;
+import com.qks.common.entity.po.DynamicFile;
+import com.qks.common.exception.ServiceException;
+import com.qks.dynamic.service.DynamicFileService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

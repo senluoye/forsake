@@ -1,11 +1,11 @@
-package com.qks.user.service;
+package com.qks.follow.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.work.entity.po.follow.UserFollow;
-import com.qks.work.entity.po.follow.UserFollowData;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.entity.vo.UserFollowVO;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.po.follow.UserFollow;
+import com.qks.common.entity.po.follow.UserFollowData;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.entity.vo.UserFollowVO;
+import com.qks.common.exception.ServiceException;
 
 import java.util.Map;
 

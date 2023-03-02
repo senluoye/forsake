@@ -1,12 +1,12 @@
 package com.qks.follow.controller;
 
-import com.qks.work.entity.po.follow.UserFollowData;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.entity.vo.UserFollowVO;
-import com.qks.work.exception.ServiceException;
-import com.qks.work.service.UserFollowDataService;
-import com.qks.work.service.UserFollowService;
-import com.qks.work.utls.JwtUtil;
+import com.qks.common.entity.po.follow.UserFollowData;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.entity.vo.UserFollowVO;
+import com.qks.common.exception.ServiceException;
+import com.qks.follow.service.UserFollowDataService;
+import com.qks.follow.service.UserFollowService;
+import com.qks.common.utils.JwtUtil;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;

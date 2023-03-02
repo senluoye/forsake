@@ -1,11 +1,11 @@
 package com.qks.message.controller;
 
-import com.qks.work.entity.po.Suggestion;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
-import com.qks.work.service.SuggestionService;
-import com.qks.work.service.UserRoleRelService;
+import com.qks.common.entity.po.Suggestion;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
+import com.qks.feignclient.service.UserClient;
+import com.qks.message.service.SuggestionService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,7 +26,7 @@ public class SuggestController {
     private SuggestionService suggestionService;
 
     @Resource
-    private UserRoleRelService userRoleRelService;
+    private UserClient userClient;
 
     /**
      * 运营/管理员 查看所有建议

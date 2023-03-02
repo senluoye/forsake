@@ -1,10 +1,10 @@
-package com.qks.message.service;
+package com.qks.message.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.user.dao.NoticeMapper;
-import com.qks.work.entity.po.Notice;
-import com.qks.work.exception.ServiceException;
-import com.qks.user.service.NoticeService;
+import com.qks.message.dao.NoticeMapper;
+import com.qks.common.entity.po.Notice;
+import com.qks.common.exception.ServiceException;
+import com.qks.message.service.NoticeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

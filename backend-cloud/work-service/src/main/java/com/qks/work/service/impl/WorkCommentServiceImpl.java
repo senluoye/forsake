@@ -1,10 +1,10 @@
 package com.qks.work.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.user.dao.WorkCommentMapper;
-import com.qks.work.entity.po.WorkComment;
-import com.qks.work.exception.ServiceException;
-import com.qks.user.service.WorkCommentService;
+import com.qks.work.dao.WorkCommentMapper;
+import com.qks.common.entity.po.WorkComment;
+import com.qks.common.exception.ServiceException;
+import com.qks.work.service.WorkCommentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

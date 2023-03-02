@@ -1,9 +1,9 @@
 package com.qks.dynamic.controller;
 
-import com.qks.work.entity.po.DynamicCollect;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.po.DynamicCollect;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
 import com.qks.dynamic.service.DynamicCollectService;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,5 +1,6 @@
 package com.qks.feignclient.service.backImpl;
 
+import com.qks.common.entity.po.User;
 import com.qks.feignclient.service.UserClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,4 +15,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class UserBackImpl implements UserClient {
+    @Override
+    public User selectById(Long userId) {
+        return null;
+    }
 }

@@ -1,10 +1,10 @@
 package com.qks.user.controller;
 
-import com.qks.work.entity.po.User;
-import com.qks.work.entity.vo.LoginVO;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.po.User;
+import com.qks.common.entity.vo.LoginVO;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
 import com.qks.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
 

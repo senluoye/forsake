@@ -1,6 +1,6 @@
 package com.qks.oss.service;
 
-import com.qks.work.entity.vo.ResVO;
+import com.qks.common.entity.vo.ResVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

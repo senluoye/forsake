@@ -4,6 +4,7 @@ import com.qks.common.entity.po.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @ClassName Dessert
@@ -15,6 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient("user-service")
 public interface UserClient {
 
-    @PostMapping("/api/feign/user/{id}")
-    User selectById(@PathVariable("id") Long userId);
+    @PostMapping("/api/feign/user")
+    User selectById(@RequestBody Long userId);
 }

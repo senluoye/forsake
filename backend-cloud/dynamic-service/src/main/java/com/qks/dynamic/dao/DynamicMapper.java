@@ -1,7 +1,7 @@
 package com.qks.dynamic.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.work.entity.po.Dynamic;
+import com.qks.common.entity.po.Dynamic;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;

@@ -1,6 +1,6 @@
 package com.qks.oss.controller;
 
-import com.qks.work.entity.vo.ResVO;
+import com.qks.common.entity.vo.ResVO;
 import com.qks.oss.service.OssService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

@@ -3,20 +3,21 @@ package com.qks.dynamic.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.work.dao.*;
-import com.qks.work.entity.enums.PageEnum;
-import com.qks.work.entity.enums.audit.AuditFlagEnum;
-import com.qks.work.entity.enums.audit.AuditStateEnum;
-import com.qks.work.entity.vo.DynamicVO;
-import com.qks.work.entity.vo.FrontendDynamicItemVO;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.enums.PageEnum;
+import com.qks.common.entity.enums.audit.AuditFlagEnum;
+import com.qks.common.entity.enums.audit.AuditStateEnum;
+import com.qks.common.entity.po.*;
+import com.qks.common.entity.vo.DynamicVO;
+import com.qks.common.entity.vo.FrontendDynamicItemVO;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
 import com.qks.dynamic.dao.*;
-import com.qks.user.service.DynamicService;
-import com.qks.work.utls.JwtUtil;
-import com.qks.work.utls.R;
-import com.qks.user.dao.*;
+import com.qks.dynamic.service.DynamicService;
+import com.qks.common.utils.JwtUtil;
+import com.qks.common.helper.R;
+import com.qks.feignclient.service.BackAuditClient;
+import com.qks.feignclient.service.UserClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,10 +44,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     private DynamicFileMapper dynamicFileMapper;
 
     @Resource
-    private UserMapper userMapper;
-
-    @Resource
-    private DynamicCommentMapper dynamicCommentMapper;
+    private UserClient userClient;
 
     @Resource
     private DynamicStarMapper dynamicStarMapper;
@@ -55,12 +53,12 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     private DynamicCollectMapper dynamicCollectMapper;
 
     @Resource
-    private RecordAuditMapper recordAuditMapper;
+    private BackAuditClient backAuditClient;
 
     @Override
     public ResVO<DynamicVO> getDynamicById(String dynamicId) {
         Dynamic dynamic = dynamicMapper.selectById(dynamicId);
-        User user = userMapper.selectById(dynamic.getUserId());
+        User user = userClient.selectById(dynamic.getUserId());
         // 获取动态文件路径
         List<DynamicFile> dynamicFileList = dynamicFileMapper.selectList(
                 new LambdaQueryWrapper<DynamicFile>().eq(DynamicFile::getDynamicId, dynamic.getId())
@@ -98,7 +96,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         Long userId = JwtUtil.getUserId(token);
 
         for (Dynamic dynamic : dynamicList) {
-            User user = userMapper.selectById(dynamic.getUserId());
+            User user = userClient.selectById(dynamic.getUserId());
 
             // 获取动态文件路径
             List<DynamicFile> dynamicFileList = dynamicFileMapper.selectList(
@@ -132,7 +130,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     @Override
     public ResVO<Map<String, Object>> addDynamic(String token, DynamicVO dynamicVO) throws ServiceException {
         Long userId = JwtUtil.getUserId(token);
-        User user = userMapper.selectById(userId);
+        User user = userClient.selectById(userId);
         if (user == null) {
             throw new ServiceException("用户不存在");
         }
@@ -155,7 +153,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
                 .state(AuditStateEnum.UnCheck.getState())
                 .flag(AuditFlagEnum.Dynamic.getFlag())
                 .build();
-        recordAuditMapper.insert(recordAudit);
+        backAuditClient.insert(recordAudit);
 
         return R.map("dynamicId", dynamic.getId());
     }
@@ -193,7 +191,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     @Override
     public ResVO<Map<String, Object>> starDynamic(String token, DynamicVO dynamicVO) throws ServiceException {
         Long userId = JwtUtil.getUserId(token);
-        if (userMapper.selectById(userId) == null) {
+        if (userClient.selectById(userId) == null) {
             throw new ServiceException("用户不存在");
         }
         if (dynamicMapper.selectById(dynamicVO.getId()) == null) {

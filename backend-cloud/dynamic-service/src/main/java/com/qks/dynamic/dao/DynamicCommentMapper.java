@@ -1,7 +1,7 @@
 package com.qks.dynamic.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.work.entity.po.DynamicComment;
+import com.qks.common.entity.po.DynamicComment;
 
 /**
  * @author 15998

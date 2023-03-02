@@ -1,10 +1,10 @@
 package com.qks.dynamic.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.work.entity.po.DynamicCollect;
-import com.qks.work.entity.vo.PageVO;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.po.DynamicCollect;
+import com.qks.common.entity.vo.PageVO;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.common.exception.ServiceException;
 
 import java.util.List;
 import java.util.Map;

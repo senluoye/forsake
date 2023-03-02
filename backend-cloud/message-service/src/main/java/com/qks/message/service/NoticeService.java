@@ -1,7 +1,7 @@
-package com.qks.message.service.impl;
+package com.qks.message.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.work.entity.po.Notice;
+import com.qks.common.entity.po.Notice;
 
 /**
  * @author 15998

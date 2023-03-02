@@ -1,9 +1,9 @@
-package com.qks.user.service.impl;
+package com.qks.follow.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qks.user.dao.UserFansMapper;
-import com.qks.work.entity.po.follow.UserFollowData;
-import com.qks.user.service.UserFollowDataService;
+import com.qks.follow.dao.UserFansMapper;
+import com.qks.common.entity.po.follow.UserFollowData;
+import com.qks.follow.service.UserFollowDataService;
 import org.springframework.stereotype.Service;
 
 /**

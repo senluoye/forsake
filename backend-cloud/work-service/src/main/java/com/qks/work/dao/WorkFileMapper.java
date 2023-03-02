@@ -1,7 +1,7 @@
 package com.qks.work.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.work.entity.po.WorkFile;
+import com.qks.common.entity.po.WorkFile;
 
 /**
  * @author 15998

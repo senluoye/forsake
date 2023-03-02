@@ -1,7 +1,7 @@
 package com.qks.message.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.work.entity.po.Notice;
+import com.qks.common.entity.po.Notice;
 
 /**
  * @author 15998

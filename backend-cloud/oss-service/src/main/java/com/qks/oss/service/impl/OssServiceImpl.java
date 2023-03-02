@@ -6,10 +6,10 @@ import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
-import com.qks.work.entity.vo.ResVO;
-import com.qks.user.service.OssService;
-import com.qks.work.utls.ConstantPropertiesUtil;
-import com.qks.work.utls.R;
+import com.qks.common.entity.vo.ResVO;
+import com.qks.oss.service.OssService;
+import com.qks.oss.utils.ConstantPropertiesUtil;
+import com.qks.common.helper.R;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

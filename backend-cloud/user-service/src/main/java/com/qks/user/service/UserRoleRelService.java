@@ -1,8 +1,8 @@
 package com.qks.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.work.entity.po.UserRoleRel;
-import com.qks.work.exception.ServiceException;
+import com.qks.common.entity.po.UserRoleRel;
+import com.qks.common.exception.ServiceException;
 
 /**
  * @author 15998

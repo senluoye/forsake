@@ -1,7 +1,7 @@
 package com.qks.work.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qks.work.entity.po.WorkComment;
+import com.qks.common.entity.po.WorkComment;
 
 /**
  * @author 15998

@@ -1,7 +1,7 @@
 package com.qks.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.work.entity.po.UserRoleRel;
+import com.qks.common.entity.po.UserRoleRel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
