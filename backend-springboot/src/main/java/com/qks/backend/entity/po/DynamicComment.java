@@ -22,7 +22,7 @@ public class DynamicComment extends Model {
     private String content;
 
     @Column(name = "parent_comment_id", comment = "父记录id")
-    private Long parentCommentId;
+    private Long parentCommentId = -1L;
 
     @Column(name = "like_count", comment = "点赞数")
     private Long likeCount;

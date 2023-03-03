@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FronendDynamicItemVO {
+public class FrontendDynamicItemVO {
     private Long id;
     private Long recordId;
     private String nickName;

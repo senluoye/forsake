@@ -1,4 +1,4 @@
-package com.qks.backend.controller;
+package com.qks.backend.controller.user;
 
 import com.qks.backend.entity.po.User;
 import com.qks.backend.entity.vo.LoginVO;

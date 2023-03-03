@@ -1,4 +1,4 @@
-package com.qks.backend.controller;
+package com.qks.backend.controller.competition;
 
 import org.springframework.web.bind.annotation.RestController;
 

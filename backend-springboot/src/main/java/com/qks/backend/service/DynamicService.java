@@ -3,6 +3,7 @@ package com.qks.backend.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qks.backend.entity.po.Dynamic;
 import com.qks.backend.entity.vo.DynamicVO;
+import com.qks.backend.entity.vo.FrontendDynamicItemVO;
 import com.qks.backend.entity.vo.PageVO;
 import com.qks.backend.entity.vo.ResVO;
 import com.qks.backend.exception.ServiceException;
@@ -21,13 +22,13 @@ public interface DynamicService extends IService<Dynamic> {
 
     ResVO<Map<String, Object>> updateDynamic(Dynamic dynamic) throws ServiceException;
 
-    ResVO<Dynamic> getDynamicById(Dynamic dynamic);
+    ResVO<DynamicVO> getDynamicById(String dynamicId);
 
-    ResVO<PageVO<List<DynamicVO>>> getDynamicList(String token, Long currentPage) throws ServiceException;
+    ResVO<PageVO<List<FrontendDynamicItemVO>>> getDynamicList(String token, Long currentPage) throws ServiceException;
 
     ResVO<Map<String, Object>> deleteDynamic(Dynamic dynamic) throws ServiceException;
 
-    ResVO<Map<String, Object>> starDynamic(String token, DynamicVO dynamic) throws ServiceException;
+    ResVO<Dynamic> starDynamic(String token, Long dynamicId) throws ServiceException;
 
     ResVO<Map<String, Object>> collectDynamic(String token, DynamicVO dynamic);
 }

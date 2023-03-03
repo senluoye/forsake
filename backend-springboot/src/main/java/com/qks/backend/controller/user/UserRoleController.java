@@ -1,4 +1,4 @@
-package com.qks.backend.controller;
+package com.qks.backend.controller.user;
 
 import org.springframework.web.bind.annotation.RestController;
 

@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,29 +88,33 @@ public class DynamicCommentServiceImpl extends ServiceImpl<DynamicCommentMapper,
 
     @Override
     public ResVO<Map<String, Object>> addComment(DynamicComment dynamicComment) throws ServiceException {
-        if (dynamicMapper.selectById(dynamicComment.getDynamicId()) == null) {
-            throw new ServiceException("动态不存在");
-        }
-
-        if (userMapper.selectById(dynamicComment.getUserId()) == null) {
-            throw new ServiceException("用户不存在");
-        }
-
+        checkDynamicComment(dynamicComment);
         dynamicCommentMapper.insert(dynamicComment);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("dynamicCommentId", dynamicComment.getId());
-        return R.success(data);
-    }
-
-    @Override
-    public ResVO<Map<String, Object>> addSubComment(DynamicComment dynamicComment) {
-        return null;
+        return R.map("dynamicCommentId", dynamicComment.getId());
     }
 
     @Override
     public ResVO<Map<String, Object>> deleteComment(DynamicComment dynamicComment) {
-        return null;
+        dynamicCommentMapper.deleteById(dynamicComment);
+        return R.map("dynamicCommentId", dynamicComment.getId());
+    }
+
+    private void checkDynamicComment(DynamicComment dynamicComment) throws ServiceException {
+        Long dynamicId = dynamicComment.getDynamicId();
+        Long userId = dynamicComment.getUserId();
+        Long parentCommentId = dynamicComment.getParentCommentId();
+
+        if (dynamicMapper.selectById(dynamicId) == null) {
+            throw new ServiceException("动态不存在");
+        }
+
+        if (userMapper.selectById(userId) == null) {
+            throw new ServiceException("用户不存在");
+        }
+
+        if (parentCommentId != null && dynamicCommentMapper.selectById(parentCommentId) == null) {
+            throw new ServiceException("选择的评论不存在");
+        }
     }
 }
 

@@ -22,7 +22,6 @@ public interface DynamicCommentService extends IService<DynamicComment> {
 
     ResVO<Map<String, Object>> addComment(DynamicComment dynamicComment) throws ServiceException;
 
-    ResVO<Map<String, Object>> addSubComment(DynamicComment dynamicComment);
 
     ResVO<Map<String, Object>> deleteComment(DynamicComment dynamicComment);
 }
