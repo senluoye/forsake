@@ -1,7 +1,7 @@
 const local = "http://localhost:8081"
 const forsake = "http://forsake.cn:8081"
 const userUrl = forsake
-const dynamicUrl = forsake
+const dynamicUrl = local
 const ossUrl = forsake
 
 const basePost = async (baseUrl, path, data, token) => {

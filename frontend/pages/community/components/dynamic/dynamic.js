@@ -20,6 +20,13 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        checkToken: (token) => {
+            if (token === null || token === "") {
+                showErrorMessage("还未登陆，请登录再进行操作", this)
+                return
+            }
+        },
+
         goDetail(e) {
             const id = this.data.dynamic.id
             wx.navigateTo({
@@ -32,17 +39,13 @@ Component({
          */
         async star() {
             const token = wx.getStorageSync('token')
-            if (token === null || token === "") {
-                showErrorMessage("还未登陆，请登录再进行操作", this)
-                return
-            }
+            this.checkToken(token)
 
-            let dynamic = this.data.dynamic
-            console.log(dynamic)
-            dynamic.likeCount += 1
-            const res = await myRequest.postDynamic('/api/dynamic/star', dynamic, token)
+            let dynamicId = this.data.dynamic.id
+            const res = await myRequest.postDynamic('/api/dynamic/star', dynamicId, token)
                 .catch((e) => { return {} })
-            console.log(res)
+            const { data: dynamicStarVO } = res
+            console.log(dynamicStarVO)
             if (JSON.stringify(res) == '{}' || res.code !== 0 || res === null) {
                 showErrorMessage(res.msg === undefined ? "发生错误" : res.msg, this)
                 return
@@ -51,10 +54,14 @@ Component({
             this.setData({
                 dynamic: {
                     ...this.data.dynamic,
-                    likeCount: dynamic.likeCount,
-                }
+                    likeCount: dynamicStarVO.likeCount,
+                },
             })
         },
+
+        async comment() {
+
+        }
     },
 
     // 生命周期
@@ -63,7 +70,6 @@ Component({
             let now = this.data.dynamic
             let updateAt = now.updateAt === "" ? now.createAt : now.updateAt
             updateAt = now.updateAt = now.updateAt.split('T')[0]
-
             this.setData({
                 dynamic: {
                     ...this.data.dynamic,
