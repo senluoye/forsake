@@ -34,7 +34,8 @@
 	<!-- 操作 -->
 	<view class="operator">
 		<view bindtap="star">
-			<image src="/static/image/点赞.png" mode="" class="star" wx:if="{{dynamic.isLike}}" />
+			<image src="/static/image/点赞1.png" mode="" class="star" wx:if="{{dynamic.isLike}}" />
+			<image src="/static/image/点赞.png" mode="" class="star" wx:else />
 			{{dynamic.likeCount}}
 		</view>
 		<view bindtap="comment">

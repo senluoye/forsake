@@ -55,6 +55,7 @@ Component({
                 dynamic: {
                     ...this.data.dynamic,
                     likeCount: dynamicStarVO.likeCount,
+                    isLike: !this.data.dynamic.isLike
                 },
             })
         },
@@ -67,6 +68,7 @@ Component({
     // 生命周期
     lifetimes: {
         ready: function () {
+            console.log(this.data.dynamic)
             let now = this.data.dynamic
             let updateAt = now.updateAt === "" ? now.createAt : now.updateAt
             updateAt = now.updateAt = now.updateAt.split('T')[0]

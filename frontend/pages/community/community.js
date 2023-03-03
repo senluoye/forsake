@@ -69,7 +69,6 @@ Page({
                 console.log(e)
                 return {}
             })
-        console.log(res)
         if (JSON.stringify(res) == '{}' || res.code === -1 || res.code === null) {
             this.setData({ isLoading: false, isRefresh: false })
             showErrorMessage("获取学习动态失败", this)
