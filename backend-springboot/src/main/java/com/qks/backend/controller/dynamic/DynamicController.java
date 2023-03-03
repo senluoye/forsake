@@ -46,8 +46,9 @@ public class DynamicController {
      * @throws ServiceException
      */
     @GetMapping("/list/{currentPage}")
-    public ResVO<PageVO<List<FrontendDynamicItemVO>>> getDynamicList(@RequestHeader("token") String token, @PathVariable("currentPage") Integer currentPage) throws ServiceException {
-        return dynamicService.getDynamicList(token, Long.valueOf(currentPage));
+    public ResVO<PageVO<List<FrontendDynamicItemVO>>> getDynamicList(@RequestHeader("token") String token,
+                                                                     @PathVariable("currentPage") Long currentPage) throws ServiceException {
+        return dynamicService.getDynamicList(token, currentPage);
     }
 
     /**

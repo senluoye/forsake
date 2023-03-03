@@ -97,26 +97,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         Long userId = JwtUtil.getUserId(token);
 
         for (Dynamic dynamic : dynamicList) {
-            User user = userMapper.selectById(dynamic.getUserId());
-
-            // 获取动态文件路径
-            List<DynamicFile> dynamicFileList = dynamicFileMapper.selectList(
-                    new QueryWrapper<DynamicFile>().eq("dynamic_id", dynamic.getId())
-            );
-
-            // 点赞情况
-            DynamicStar dynamicStar = dynamicStarMapper.selectOne(
-                    new QueryWrapper<DynamicStar>()
-                            .eq("dynamic_id", dynamic.getId())
-                            .eq("user_id", userId)
-            );
-
-            // 收藏情况
-            DynamicCollect dynamicCollect = dynamicCollectMapper.selectOne(
-                    new QueryWrapper<DynamicCollect>().eq("dynamic_id", dynamic.getId())
-            );
-
-            FrontendDynamicItemVO dynamicVO = initFrontendDynamicItemVO(dynamic, user, dynamicFileList, dynamicStar, dynamicCollect);
+            FrontendDynamicItemVO dynamicVO = initFrontendDynamicItemVO(dynamic, userId);
             dynamicVOList.add(dynamicVO);
         }
 
@@ -229,11 +210,28 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         return null;
     }
 
-    private FrontendDynamicItemVO initFrontendDynamicItemVO(Dynamic dynamic, User user, List<DynamicFile> dynamicFileList,
-                                                            DynamicStar dynamicStar, DynamicCollect dynamicCollect) {
+    private FrontendDynamicItemVO initFrontendDynamicItemVO(Dynamic dynamic, Long userId) {
+        User user = userMapper.selectById(dynamic.getUserId());
+
+        // 点赞情况
+        DynamicStar dynamicStar = dynamicStarMapper.selectOne(
+                new QueryWrapper<DynamicStar>()
+                        .eq("dynamic_id", dynamic.getId())
+                        .eq("user_id", userId)
+        );
+
+        // 获取动态文件路径
+        List<DynamicFile> dynamicFileList = dynamicFileMapper.selectList(
+                new QueryWrapper<DynamicFile>().eq("dynamic_id", dynamic.getId())
+        );
+
+        // 收藏情况
+        DynamicCollect dynamicCollect = dynamicCollectMapper.selectOne(
+                new QueryWrapper<DynamicCollect>().eq("dynamic_id", dynamic.getId())
+        );
+
         FrontendDynamicItemVO data = new FrontendDynamicItemVO();
         data.setId(dynamic.getId());
-        data.setTitle(dynamic.getTitle());
         data.setCreateAt(dynamic.getCreateAt());
         data.setUpdateAt(dynamic.getUpdateAt());
         data.setContent(dynamic.getContent());

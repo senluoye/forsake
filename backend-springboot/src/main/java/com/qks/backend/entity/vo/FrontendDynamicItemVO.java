@@ -14,21 +14,42 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class FrontendDynamicItemVO {
+    // 动态id
     private Long id;
+
+    //
     private Long recordId;
+
+    // 昵称
     private String nickName;
+
     // 用户头像
     private String avatarUrl;
-    private String title;
+
+    // 创建时间
     private Timestamp createAt;
+
+    // 更新时间
     private Timestamp updateAt;
+
+    // 内容
     private String content;
+
+    // 文件列表
     private List<DynamicFile> dynamicFileList;
+
+    // 点赞数量
     private Long likeCount;
+
+    // 收藏数量
     private Long collectCount;
+
+    // 评论数量
     private Long commentCount;
+
+    // 是否喜欢
     private Boolean isLike;
+
+    // 是否收藏
     private Boolean isCollect;
-    private Integer state;
-    private String message;
 }
