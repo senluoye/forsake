@@ -206,8 +206,38 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     }
 
     @Override
-    public ResVO<Map<String, Object>> collectDynamic(String token, DynamicVO dynamic) {
-        return null;
+    public ResVO<Dynamic> collectDynamic(String token, Long dynamicId) throws ServiceException {
+        Long userId = JwtUtil.getUserId(token);
+        if (userMapper.selectById(userId) == null) {
+            throw new ServiceException("用户不存在");
+        }
+
+        Dynamic dynamic = dynamicMapper.selectById(dynamicId);
+        if (dynamic == null) {
+            throw new ServiceException("动态不存在");
+        }
+
+        DynamicCollect dynamicCollect = dynamicCollectMapper.selectOne(
+                new LambdaQueryWrapper<DynamicCollect>().eq(DynamicCollect::getDynamicId, dynamicId)
+        );
+        if (dynamicCollect == null) {
+            // 不存在点赞记录，就创建，并删除动态点赞数
+            dynamic.setCollectCount(dynamic.getCollectCount() + 1);
+
+            dynamicCollect = new DynamicCollect();
+            dynamicCollect.setDynamicId(dynamicId);
+            dynamicCollect.setUserId(userId);
+            dynamicCollectMapper.insert(dynamicCollect);
+            dynamicMapper.updateCollectCount(dynamicId, dynamic.getCollectCount());
+        } else {
+            // 存在点赞记录，就删除。并减少动态点赞数
+            dynamic.setCollectCount(dynamic.getCollectCount() - 1);
+
+            dynamicCollectMapper.deleteById(dynamicCollect.getId());
+            dynamicMapper.updateCollectCount(dynamicId, dynamic.getCollectCount());
+        }
+
+        return R.success(dynamic);
     }
 
     private FrontendDynamicItemVO initFrontendDynamicItemVO(Dynamic dynamic, Long userId) {
@@ -230,11 +260,16 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
                 new QueryWrapper<DynamicCollect>().eq("dynamic_id", dynamic.getId())
         );
 
+        String content = dynamic.getContent();
+        if (content.length() > 60) {
+            content = content.substring(0, 40) + "...";
+        }
+
         FrontendDynamicItemVO data = new FrontendDynamicItemVO();
         data.setId(dynamic.getId());
         data.setCreateAt(dynamic.getCreateAt());
         data.setUpdateAt(dynamic.getUpdateAt());
-        data.setContent(dynamic.getContent());
+        data.setContent(content);
         data.setLikeCount(dynamic.getLikeCount());
         data.setCollectCount(dynamic.getCollectCount());
         data.setNickName(user.getNickName());
@@ -264,6 +299,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         data.setIsCollect(dynamicCollect != null);
         return data;
     }
+
 }
 
 

@@ -43,14 +43,14 @@ Page({
         })
     },
 
-    // 上拉刷新
+    // 下拉刷新
     async pullDownRefresh(e) {
         this.setData({ isRefresh: true })
         await this.getDynamicList()
         this.setData({ isRefresh: false })
     },
 
-    // 下拉触底加载
+    // 上拉触底加载
     loadMore(e) {
         console.log(e)
     },
@@ -71,7 +71,7 @@ Page({
             })
         if (JSON.stringify(res) == '{}' || res.code === -1 || res.code === null) {
             this.setData({ isLoading: false, isRefresh: false })
-            showErrorMessage("获取学习动态失败", this)
+            showErrorMessage("获取内容失败", this)
             return
         }
 

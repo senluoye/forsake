@@ -1,11 +1,20 @@
-<!--pages/detail/components/footer/footer.wxml-->
 <view class="foot">
 	<view class="comment">
 		<input type="text" placeholder="请输入评论" />
 	</view>
 	<view class="operator">
-		<view bindtap="star">点赞 {{dynamic.likeCount}}</view>
-		<view bindtap="comment">评论 {{dynamic.commentCount}} </view>
-		<view bindtap="collect">收藏 {{dynamic.collectCount}}</view>
+		<view bindtap="star">
+			<image src="/static/image/点赞1.png" mode="" class="star" wx:if="{{dynamic.isLike}}" />
+			<image src="/static/image/点赞.png" mode="" class="star" wx:else />
+			<span class="star"> {{dynamic.likeCount}}</span>
+		</view>
+		<view bindtap="comment">
+			<image src="/static/image/评论.png" mode="" class="star" /> {{dynamic.commentCount}}
+		</view>
+		<view bindtap="collect">
+			<image src="/static/image/收藏1.png" mode="" class="star" wx:if="{{dynamic.isCollect}}" />
+			<image src="/static/image/收藏.png" mode="" class="star" wx:else />
+			<span class="star"> {{dynamic.collectCount}}</span>
+		</view>
 	</view>
 </view>

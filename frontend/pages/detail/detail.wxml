@@ -1,7 +1,7 @@
 <!--pages/detail/detail.wxml-->
 <view>
-	<view wx:if="{{id === 0}}">
-		数据不存在
+	<view wx:if="{{id === -1}}">
+		<t-loading theme="circular" size="40rpx" class="wrapper" />
 	</view>
 	<view wx:else>
 		<t-message id="t-message" />
@@ -20,9 +20,7 @@
 				</view>
 			</view>
 			<!-- 主题内容 -->
-			<view class="main-content" bindtap="goDetail">
-				<!-- 标题 -->
-				<view class=" tital">{{dynamic.title}}</view>
+			<view class="main-content">
 				<!-- 内容 -->
 				<view class="content">
 					<text>
@@ -32,7 +30,7 @@
 				<!-- 照片/视频 -->
 				<view class="image-content">
 					<view wx:for="{{dynamic.dynamicFileList}}" wx:for-item="file" wx:key="id">
-						<t-image shape="round" src="{{file.path}}" mode="aspectFill" width="110" height="110" style="margin-left: 10rpx;" />
+						<t-image bindtap="previewImage" shape="round" src="{{file.path}}" data-src="{{file.path}}zzzzzzzzzzzzzzzzzzzzz" mode="aspectFill" width="90" height="90" style="margin-left: 10rpx;" />
 					</view>
 				</view>
 			</view>

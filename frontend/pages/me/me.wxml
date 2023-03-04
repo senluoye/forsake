@@ -28,8 +28,9 @@
 			<t-cell title="关于我们" hover arrow>
 				<t-icon name="lock-on" color="#0052d4" slot="left-icon" />
 			</t-cell>
+			<t-cell title="退出登录" hover arrow bindtap="logout">
+				<t-icon name="lock-on" color="#0052d4" slot="left-icon" />
+			</t-cell>
 		</t-cell-group>
 	</view>
-	<t-button bindtap="logout">退出登录</t-button>
-
 </view>

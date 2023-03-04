@@ -2,31 +2,24 @@
 	<t-message id="t-message" />
 	<!-- 顶栏 -->
 	<view class="topic">
-		<t-avatar class="avatar" image="{{dynamic.avatarUrl}}" />
+		<t-avatar size="small" class="avatar" image="{{dynamic.avatarUrl}}" />
 		<view class="top-center">
 			<view class="t" />
 			<span class="name">{{dynamic.nickName}}</span>
 			<view class="t1" />
 			<span class="date">{{dynamic.updateAt}}</span>
 		</view>
-		<view class="guanzhu">
-			<button class="guanzhu-btn">+ 关注</button>
-		</view>
 	</view>
 	<!-- 主题内容 -->
 	<view class="main-content" bindtap="goDetail">
-		<!-- 标题 -->
-		<!-- <view class=" tital">{{dynamic.title}}</view> -->
 		<!-- 内容 -->
 		<view class="content">
-			<text>
-				{{dynamic.content}}
-			</text>
+			<text>{{dynamic.content}}</text>
 		</view>
 		<!-- 照片/视频 -->
 		<view class="image-content">
 			<view wx:for="{{dynamic.dynamicFileList}}" wx:for-item="file" wx:key="id">
-				<t-image shape="round" src="{{file.path}}" mode="aspectFill" width="110" height="110" style="margin-left: 10rpx;" />
+				<image class="image" src="{{file.path}}" mode="aspectFill" />
 			</view>
 		</view>
 	</view>
@@ -36,14 +29,19 @@
 		<view bindtap="star">
 			<image src="/static/image/点赞1.png" mode="" class="star" wx:if="{{dynamic.isLike}}" />
 			<image src="/static/image/点赞.png" mode="" class="star" wx:else />
-			{{dynamic.likeCount}}
+			<span class="operator-foot"> {{dynamic.likeCount}}</span>
 		</view>
 		<view bindtap="comment">
-			<image src="/static/image/评论.png" mode="" class="star" /> {{dynamic.commentCount}}
+			<image src="/static/image/评论.png" mode="" class="star" />
+			<span class="operator-foot"> {{dynamic.commentCount}}</span>
 		</view>
 		<view bindtap="collect">
-			<image src="/static/image/收藏.png" mode="" class="star" /> {{dynamic.collectCount}}
+			<image src="/static/image/收藏1.png" mode="" class="star" wx:if="{{dynamic.isCollect}}" />
+			<image src="/static/image/收藏.png" mode="" class="star" wx:else />
+			<span class="operator-foot"> {{dynamic.collectCount}}</span>
 		</view>
 	</view>
+	<view class="b" />
+	<view class="devide" />
 	<view class="b" />
 </view>

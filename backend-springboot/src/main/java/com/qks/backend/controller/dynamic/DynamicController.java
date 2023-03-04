@@ -111,9 +111,9 @@ public class DynamicController {
      * @return
      */
     @PostMapping("/collect")
-    public ResVO<Map<String, Object>> collectDynamic(@RequestHeader("token") String token, @RequestBody DynamicVO dynamicVO)
+    public ResVO<Dynamic> collectDynamic(@RequestHeader("token") String token, @RequestBody Long dynamicId)
             throws ServiceException {
-        return dynamicService.collectDynamic(token, dynamicVO);
+        return dynamicService.collectDynamic(token, dynamicId);
     }
 
 }

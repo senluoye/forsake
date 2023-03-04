@@ -1,1 +1,20 @@
 /* pages/detail/components/footer/footer.wxss */
+.foot {
+	position: fixed;
+	bottom: 0rpx;
+}
+
+.comment {
+	float: left;
+}
+
+.operator {
+	display: flex;
+	justify-content: space-between;
+	margin: 10rpx 100rpx;
+}
+
+.star {
+	width: 35rpx;
+	height: 35rpx;
+}

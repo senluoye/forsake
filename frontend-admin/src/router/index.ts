@@ -1,10 +1,11 @@
 import React, { lazy } from 'react';
 import { BrowserRouterProps } from 'react-router-dom';
 
-import dynamic from './modules/dynamic';
+import audit from './modules/audit';
 import user from './modules/user';
-// import login from './modules/login';
 import otherRoutes from './modules/others';
+import message from './modules/message';
+import overview from './modules/overview';
 
 export interface IRouter {
   path: string;
@@ -48,6 +49,6 @@ const routes: IRouter[] = [
   },
 ];
 
-const allRoutes = [...routes, ...dynamic, ...user, ...otherRoutes];
+const allRoutes = [...routes, ...overview, ...message, ...audit, ...user, ...otherRoutes];
 
 export default allRoutes;

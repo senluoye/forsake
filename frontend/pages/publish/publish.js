@@ -17,8 +17,8 @@ Page({
         originFiles: [],
         gridConfig: {
             column: 3,
-            width: 210,
-            height: 210,
+            width: 230,
+            height: 230,
         },
         config: {
             count: 1,

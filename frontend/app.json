@@ -53,6 +53,7 @@
         "t-navbar": "tdesign-miniprogram/navbar/navbar",
         "t-avatar": "tdesign-miniprogram/avatar/avatar",
         "t-loading": "tdesign-miniprogram/loading/loading",
-        "t-search": "tdesign-miniprogram/search/search"
+        "t-search": "tdesign-miniprogram/search/search",
+        "t-divider": "tdesign-miniprogram/divider/divider"
     }
 }

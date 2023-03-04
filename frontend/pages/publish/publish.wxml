@@ -1,12 +1,9 @@
 <view class="app">
 	<t-message id="t-message" />
-
-	<view class="a" />
-	<input placeholder="标题" class="title" bindinput="titleDataHandle" />
 	<textarea placeholder="分享我的资源/动态" class="content" bindinput="contentDataHandle" />
 	<view class="upload" id="uploader">
 		<t-upload media-type="{{['video','image']}}" files="{{originFiles}}" gridConfig="{{gridConfig}}" bind:success="handleSuccess" bind:remove="handleRemove" bind:click="handleClick" />
 	</view>
-	<view class="b"/>
+	<view class="b" />
 	<t-button class="publish" bindtap="publish">发布</t-button>
 </view>

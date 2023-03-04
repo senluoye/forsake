@@ -30,5 +30,5 @@ public interface DynamicService extends IService<Dynamic> {
 
     ResVO<Dynamic> starDynamic(String token, Long dynamicId) throws ServiceException;
 
-    ResVO<Map<String, Object>> collectDynamic(String token, DynamicVO dynamic);
+    ResVO<Dynamic> collectDynamic(String token, Long dynamicId) throws ServiceException;
 }

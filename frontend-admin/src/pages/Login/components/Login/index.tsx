@@ -47,7 +47,7 @@ export default function Login() {
           console.log(token);
           MessagePlugin.success('登录成功');
           localStorage.setItem('token', token);
-          navigate('/dashboard/base');
+          navigate('/user');
           return;
         }
         MessagePlugin.error('登录失败,请检查账号密码');

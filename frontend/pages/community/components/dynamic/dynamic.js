@@ -43,9 +43,11 @@ Component({
 
             let dynamicId = this.data.dynamic.id
             const res = await myRequest.postDynamic('/api/dynamic/star', dynamicId, token)
-                .catch((e) => { return {} })
+                .catch((e) => {
+                    console.log(e)
+                    return {}
+                })
             const { data: dynamicStarVO } = res
-            console.log(dynamicStarVO)
             if (JSON.stringify(res) == '{}' || res.code !== 0 || res === null) {
                 showErrorMessage(res.msg === undefined ? "发生错误" : res.msg, this)
                 return
@@ -62,6 +64,30 @@ Component({
 
         async comment() {
 
+        },
+        async collect() {
+            const token = wx.getStorageSync('token')
+            this.checkToken(token)
+
+            let dynamicId = this.data.dynamic.id
+            const res = await myRequest.postDynamic('/api/dynamic/collect', dynamicId, token)
+                .catch((e) => {
+                    console.log(e)
+                    return {}
+                })
+            const { data: dynamicCollectVO } = res
+            if (JSON.stringify(res) == '{}' || res.code !== 0 || res === null) {
+                showErrorMessage(res.msg === undefined ? "发生错误" : res.msg, this)
+                return
+            }
+
+            this.setData({
+                dynamic: {
+                    ...this.data.dynamic,
+                    collectCount: dynamicCollectVO.collectCount,
+                    isCollect: !this.data.dynamic.isCollect
+                },
+            })
         }
     },
 
@@ -78,19 +104,6 @@ Component({
                     updateAt: updateAt,
                 }
             })
-
-            // 简化内容
-            let contentList = now.content.split('\n')
-            if (contentList.length >= 3) {
-                let content = contentList[0] + '\n' + contentList[1] + '\n' + contentList[2]
-                    + '...';
-                this.setData({
-                    dynamic: {
-                        ...this.data.dynamic,
-                        content: content,
-                    }
-                })
-            }
         },
 
         // 在组件实例进入页面节点树时执行

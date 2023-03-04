@@ -1,3 +1,11 @@
+/*
+ * @Author: senluoye 1599869435@qq.com
+ * @Date: 2023-02-06 11:52:53
+ * @LastEditors: senluoye 1599869435@qq.com
+ * @LastEditTime: 2023-03-01 20:56:44
+ * @FilePath: \frontend-admin\src\layouts\components\Header\HeaderIcon.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Popup, Badge, Dropdown, Space } from 'tdesign-react';
@@ -26,12 +34,12 @@ export default memo(() => {
   };
 
   const gotoGitHub = () => {
-    window.open('https://github.com/Tencent/tdesign-react-starter');
+    window.open('https://github.com/senluoye/forsake/tree/main/frontend-admin');
   };
 
   const clickHandler = (data: any) => {
     if (data.value === 1) {
-      navigate('/user/index');
+      navigate('/user');
     }
   };
   const handleLogout = async () => {
@@ -41,9 +49,6 @@ export default memo(() => {
 
   return (
     <Space align='center'>
-      <Badge className={Style.badge} count={6} dot={false} maxCount={99} shape='circle' showZero={false} size='medium'>
-        <Button className={Style.menuIcon} shape='square' size='large' variant='text' icon={<MailIcon />} />
-      </Badge>
       <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
         <Button
           className={Style.menuIcon}
@@ -54,20 +59,10 @@ export default memo(() => {
           icon={<LogoGithubIcon />}
         />
       </Popup>
-      <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
-        <Button
-          className={Style.menuIcon}
-          shape='square'
-          size='large'
-          variant='text'
-          onClick={gotoWiki}
-          icon={<HelpCircleIcon />}
-        />
-      </Popup>
       <Dropdown trigger={'click'} onClick={clickHandler}>
         <Button variant='text' className={Style.dropdown}>
           <Icon name='user-circle' className={Style.icon} />
-          <span className={Style.text}>Tencent</span>
+          <span className={Style.text}>admin</span>
           <Icon name='chevron-down' className={Style.icon} />
         </Button>
         <DropdownMenu>

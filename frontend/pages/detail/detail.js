@@ -8,9 +8,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        id: 0,
-        dynamic: {},
-        isLoading: false,
+        id: 0, // 动态id
+        dynamic: {}, // 动态VO内容
+        isLoading: false, // 是否加载
     },
 
     /**
@@ -33,6 +33,17 @@ Page({
 
         const { data } = res;
         this.setData({ dynamic: data, id: id, isLoading: false })
+    },
+
+    // 预览图片
+    previewImage: function (e) {
+        console.log(e);
+        var current = e.currentTarget.dataset.src;
+        console.log(current);
+        wx.previewImage({
+            current: current, // 当前显示图片的http链接
+            urls: [current]
+        })
     },
 
     /**

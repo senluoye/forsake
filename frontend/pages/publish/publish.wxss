@@ -5,22 +5,12 @@
 	height: 100vh;
 }
 
-.a {
-	height: 20rpx;
-}
-
-.title {
-	background-color: white;
-	height: 80rpx;
-	width: 100%;
-	/* margin-top: 150rpx; */
-}
-
 .content {
 	background-color: white;
 	height: 300rpx;
 	width: 100%;
 	margin-top: 5rpx;
+	font-size: 10px;
 }
 
 .b {
