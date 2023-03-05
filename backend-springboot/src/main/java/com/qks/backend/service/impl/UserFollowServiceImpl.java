@@ -3,9 +3,13 @@ package com.qks.backend.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qks.backend.dao.UserFollowMapper;
+import com.qks.backend.entity.enums.PageEnum;
+import com.qks.backend.entity.po.User;
 import com.qks.backend.entity.po.follow.UserFollow;
 import com.qks.backend.entity.po.follow.UserFollowData;
+import com.qks.backend.entity.vo.PageVO;
 import com.qks.backend.entity.vo.ResVO;
+import com.qks.backend.entity.vo.UserFollowListVO;
 import com.qks.backend.entity.vo.UserFollowVO;
 import com.qks.backend.exception.ServiceException;
 import com.qks.backend.service.UserFollowDataService;
@@ -14,6 +18,8 @@ import com.qks.backend.service.UserService;
 import com.qks.backend.utls.R;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -94,6 +100,35 @@ public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFol
                 new LambdaQueryWrapper<UserFollowData>().eq(UserFollowData::getUserId, userId)
         );
         return R.success(userFollowData);
+    }
+
+    @Override
+    public ResVO<PageVO<List<UserFollowListVO>>> getFollowList(Long userId, Long currentPage) {
+        Long total = userFollowMapper.selectCount(
+                new LambdaQueryWrapper<UserFollow>().eq(UserFollow::getUserId, userId)
+        );
+
+        List<Long> followerIdList = userFollowMapper.selectUserFollowList(
+                userId, currentPage * PageEnum.DefaultNum.getPageNum()
+        );
+        List<UserFollowListVO> data = new ArrayList<>();
+        for (Long followerId : followerIdList) {
+            User user = userService.getById(followerId);
+            UserFollowListVO userFollowListVO = UserFollowListVO.builder()
+                    .avatarUrl(user.getAvatarUrl())
+                    .nickName(user.getNickName())
+                    .userId(followerId)
+                    .build();
+            data.add(userFollowListVO);
+        }
+
+
+        PageVO<List<UserFollowListVO>> pageVO = new PageVO<>();
+        pageVO.setTotal(total);
+        pageVO.setCurrent(currentPage);
+        pageVO.setSize(PageEnum.DefaultNum.getPageNum());
+        pageVO.setData(data);
+        return R.success(pageVO);
     }
 }
 
