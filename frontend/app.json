@@ -54,6 +54,8 @@
         "t-avatar": "tdesign-miniprogram/avatar/avatar",
         "t-loading": "tdesign-miniprogram/loading/loading",
         "t-search": "tdesign-miniprogram/search/search",
-        "t-divider": "tdesign-miniprogram/divider/divider"
+        "t-divider": "tdesign-miniprogram/divider/divider",
+        "t-tabs": "tdesign-miniprogram/tabs/tabs",
+        "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel"
     }
 }

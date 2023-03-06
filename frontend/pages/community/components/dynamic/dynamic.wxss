@@ -58,13 +58,19 @@
 }
 
 .image-content {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 90px);
+	grid-template-rows: 90px;
+	grid-auto-rows: 90px;
+	justify-content: center;
+	grid-gap: 10rpx;
 }
 
 .image {
 	width: 200rpx;
 	height: 200rpx;
-	margin-left: 20rpx;
+	border-radius: 5px;
+	/* margin-left: 20rpx; */
 }
 
 .operator {

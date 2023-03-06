@@ -8,12 +8,14 @@ import com.qks.backend.entity.enums.PageEnum;
 import com.qks.backend.entity.enums.audit.AuditFlagEnum;
 import com.qks.backend.entity.enums.audit.AuditStateEnum;
 import com.qks.backend.entity.po.*;
+import com.qks.backend.entity.po.follow.UserFollow;
 import com.qks.backend.entity.vo.DynamicVO;
 import com.qks.backend.entity.vo.FrontendDynamicItemVO;
 import com.qks.backend.entity.vo.PageVO;
 import com.qks.backend.entity.vo.ResVO;
 import com.qks.backend.exception.ServiceException;
 import com.qks.backend.service.DynamicService;
+import com.qks.backend.service.UserFollowService;
 import com.qks.backend.utls.JwtUtil;
 import com.qks.backend.utls.R;
 import org.springframework.stereotype.Service;
@@ -56,25 +58,14 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     @Resource
     private RecordAuditMapper recordAuditMapper;
 
+    @Resource
+    private UserFollowService userFollowService;
+
     @Override
-    public ResVO<DynamicVO> getDynamicById(String dynamicId) {
+    public ResVO<DynamicVO> getDynamicById(String dynamicId, Long meId) {
         Dynamic dynamic = dynamicMapper.selectById(dynamicId);
-        User user = userMapper.selectById(dynamic.getUserId());
-        // 获取动态文件路径
-        List<DynamicFile> dynamicFileList = dynamicFileMapper.selectList(
-                new LambdaQueryWrapper<DynamicFile>().eq(DynamicFile::getDynamicId, dynamic.getId())
-        );
-        DynamicStar dynamicStar = dynamicStarMapper.selectOne(
-                new LambdaQueryWrapper<DynamicStar>()
-                        .eq(DynamicStar::getDynamicId, dynamic.getId())
-                        .eq(DynamicStar::getUserId, user.getId())
-        );
-        DynamicCollect dynamicCollect = dynamicCollectMapper.selectOne(
-                new LambdaQueryWrapper<DynamicCollect>().eq(DynamicCollect::getDynamicId, dynamic.getId())
-        );
 
-        DynamicVO data = initDynamicVO(dynamic, user, dynamicFileList, dynamicStar, dynamicCollect);
-
+        DynamicVO data = initDynamicVO(dynamic, meId);
         return R.success(data);
     }
 
@@ -119,7 +110,6 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
 
         // 插入数据到学习表
         Dynamic dynamic = Dynamic.builder()
-                .title(dynamicVO.getTitle())
                 .content(dynamicVO.getContent())
                 .userId(user.getId())
                 .build();
@@ -281,11 +271,34 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         return data;
     }
 
-    private DynamicVO initDynamicVO(Dynamic dynamic, User user, List<DynamicFile> dynamicFileList,
-                                    DynamicStar dynamicStar, DynamicCollect dynamicCollect) {
+    private DynamicVO initDynamicVO(Dynamic dynamic, Long meId) {
+        // 获取目标用户信息
+        User user = userMapper.selectById(dynamic.getUserId());
+
+        // 获取动态文件路径
+        List<DynamicFile> dynamicFileList = dynamicFileMapper.selectList(
+                new LambdaQueryWrapper<DynamicFile>().eq(DynamicFile::getDynamicId, dynamic.getId())
+        );
+
+        // 获取自身点赞情况
+        DynamicStar dynamicStar = dynamicStarMapper.selectOne(
+                new LambdaQueryWrapper<DynamicStar>()
+                        .eq(DynamicStar::getDynamicId, dynamic.getId())
+                        .eq(DynamicStar::getUserId, user.getId())
+        );
+
+        // 获取自身收藏情况
+        DynamicCollect dynamicCollect = dynamicCollectMapper.selectOne(
+                new LambdaQueryWrapper<DynamicCollect>().eq(DynamicCollect::getDynamicId, dynamic.getId())
+        );
+
+        // 获取自身关注情况
+        UserFollow userFollow = userFollowService.getOne(
+                new LambdaQueryWrapper<UserFollow>().eq(UserFollow::getUserId, user.getId()).eq(UserFollow::getFollowerId, meId)
+        );
+
         DynamicVO data = new DynamicVO();
         data.setId(dynamic.getId());
-        data.setTitle(dynamic.getTitle());
         data.setCreateAt(dynamic.getCreateAt());
         data.setUpdateAt(dynamic.getUpdateAt());
         data.setContent(dynamic.getContent());
@@ -297,6 +310,8 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         data.setCommentCount(dynamic.getCommentCount());
         data.setIsLike(dynamicStar != null);
         data.setIsCollect(dynamicCollect != null);
+        data.setIsFollow(userFollow != null);
+        data.setUserId(user.getId());
         return data;
     }
 

@@ -6,7 +6,6 @@ import com.qks.backend.entity.vo.ResVO;
 import com.qks.backend.entity.vo.UserFollowListVO;
 import com.qks.backend.entity.vo.UserFollowVO;
 import com.qks.backend.exception.ServiceException;
-import com.qks.backend.service.UserFollowDataService;
 import com.qks.backend.service.UserFollowService;
 import com.qks.backend.utls.JwtUtil;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +24,9 @@ import java.util.Map;
 @RequestMapping("/api/follow")
 public class FollowerController {
 
-    private final UserFollowDataService userFollowDataService;
-
     private final UserFollowService userFollowService;
 
-    public FollowerController(UserFollowDataService userFollowDataService, UserFollowService userFollowService) {
-        this.userFollowDataService = userFollowDataService;
+    public FollowerController(UserFollowService userFollowService) {
         this.userFollowService = userFollowService;
     }
 

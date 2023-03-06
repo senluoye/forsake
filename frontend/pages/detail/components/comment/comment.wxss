@@ -1,0 +1,5 @@
+.container {
+	height: 1px;
+	background-color: rgb(210, 244, 245);
+	margin-top: 40rpx;
+}

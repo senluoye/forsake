@@ -17,9 +17,10 @@
 			<text>{{dynamic.content}}</text>
 		</view>
 		<!-- 照片/视频 -->
-		<view class="image-content">
+		<view wx:if="{{dynamic.dynamicFileList.length !== 0}}" class="image-content">
 			<view wx:for="{{dynamic.dynamicFileList}}" wx:for-item="file" wx:key="id">
-				<image class="image" src="{{file.path}}" mode="aspectFill" />
+				<image wx:if="{{file.suffix === 'png' || file.suffix === 'jpg' || file.suffix === 'jpge'}}" class="image" src="{{file.path}}" mode="aspectFill" />
+				<video wx:if="{{file.suffix === 'mp4' || file.suffix === 'mp3'}}" src="{{file.path}}" class="image" />
 			</view>
 		</view>
 	</view>

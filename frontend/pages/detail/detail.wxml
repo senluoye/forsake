@@ -1,5 +1,6 @@
 <!--pages/detail/detail.wxml-->
 <view>
+	<t-message id="t-message" />
 	<view wx:if="{{id === -1}}">
 		<t-loading theme="circular" size="40rpx" class="wrapper" />
 	</view>
@@ -16,7 +17,8 @@
 					<span class="date">{{dynamic.updateAt}}</span>
 				</view>
 				<view class="guanzhu">
-					<button class="guanzhu-btn">+ 关注</button>
+					<button class="guanzhu-btn" bindtap="follow" wx:if="{{!dynamic.isFollow}}">+ 关注</button>
+					<button class="guanzhu-btn" bindtap="follow" wx:else> 已关注</button>
 				</view>
 			</view>
 			<!-- 主题内容 -->
@@ -30,12 +32,16 @@
 				<!-- 照片/视频 -->
 				<view class="image-content">
 					<view wx:for="{{dynamic.dynamicFileList}}" wx:for-item="file" wx:key="id">
-						<t-image bindtap="previewImage" shape="round" src="{{file.path}}" data-src="{{file.path}}zzzzzzzzzzzzzzzzzzzzz" mode="aspectFill" width="90" height="90" style="margin-left: 10rpx;" />
+						<t-image wx:if="{{file.suffix === 'png' || file.suffix === 'jpg' || file.suffix === 'jpge'}}" bindtap="previewImage" shape="round" src="{{file.path}}" data-src="{{file.path}}" mode="aspectFill" width="90" height="90" />
+						<video wx:if="{{file.suffix==='mp4' || file.suffix==='mp3' }}" src="{{file.path}}" class="image" />
 					</view>
 				</view>
 			</view>
+			<view>
+				<comment conmentList="{{conmentList}}" />
+			</view>
 		</scroll-view>
 		<!-- 操作 -->
-		<footer />
+		<footer dynamic="{{dynamic}}" />
 	</view>
 </view>

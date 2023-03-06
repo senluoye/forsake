@@ -21,22 +21,52 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class DynamicVO {
+    // 动态id
     private Long id;
-    private Long recordId;
+
+    // 昵称
     private String nickName;
+
     // 用户头像
     private String avatarUrl;
-    private String title;
+
+    // 用它id
+    private Long userId;
+
+    // 创建时间
     private Timestamp createAt;
+
+    // 更新时间
     private Timestamp updateAt;
+
+    // 内容
     private String content;
+
+    // 文件列表
     private List<DynamicFile> dynamicFileList;
+
+    // 点赞书
     private Long likeCount;
+
+    // 收藏数
     private Long collectCount;
+
+    // 评论数
     private Long commentCount;
+
+    // 是否点赞
     private Boolean isLike;
+
+    // 是否收藏
     private Boolean isCollect;
-    private Integer state;
+
+    // 是否关注
+    private Boolean isFollow;
+
+    // 审核相关
     private String message;
+    private Integer state;
+    private Long recordId;
+    private String title;
 
 }

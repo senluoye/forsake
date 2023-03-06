@@ -22,7 +22,7 @@ public interface DynamicService extends IService<Dynamic> {
 
     ResVO<Map<String, Object>> updateDynamic(Dynamic dynamic) throws ServiceException;
 
-    ResVO<DynamicVO> getDynamicById(String dynamicId);
+    ResVO<DynamicVO> getDynamicById(String dynamicId, Long userId);
 
     ResVO<PageVO<List<FrontendDynamicItemVO>>> getDynamicList(String token, Long currentPage) throws ServiceException;
 

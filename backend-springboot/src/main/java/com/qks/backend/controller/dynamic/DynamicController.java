@@ -7,6 +7,7 @@ import com.qks.backend.entity.vo.PageVO;
 import com.qks.backend.entity.vo.ResVO;
 import com.qks.backend.exception.ServiceException;
 import com.qks.backend.service.DynamicService;
+import com.qks.backend.utls.JwtUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -34,8 +35,9 @@ public class DynamicController {
      * @return
      */
     @GetMapping("/one/{id}")
-    public ResVO<DynamicVO> getDynamicById(@PathVariable("id") String dynamicId) {
-        return dynamicService.getDynamicById(dynamicId);
+    public ResVO<DynamicVO> getDynamicById(@PathVariable("id") String dynamicId, @RequestHeader("token") String token) throws ServiceException {
+        Long userId = JwtUtil.getUserId(token);
+        return dynamicService.getDynamicById(dynamicId, userId);
     }
 
     /**
@@ -74,7 +76,6 @@ public class DynamicController {
      */
     @PutMapping
     public ResVO<Map<String, Object>> updateDynamic(@RequestBody Dynamic dynamic) throws ServiceException {
-        System.out.println(dynamicService.list());
         return dynamicService.updateDynamic(dynamic);
     }
 

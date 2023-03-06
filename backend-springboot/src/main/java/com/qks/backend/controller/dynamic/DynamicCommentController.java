@@ -33,7 +33,7 @@ public class DynamicCommentController {
      * @return
      * @throws ServiceException
      */
-    @GetMapping("/list/{dynamicId}")
+    @PostMapping("/list/{dynamicId}")
     public ResVO<PageVO<List<DynamicComment>>> getDynamicCommentList(
             @PathVariable("dynamicId") String dynamicId,
             @RequestBody Integer currentPage) throws ServiceException {

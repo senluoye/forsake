@@ -1,0 +1,11 @@
+<view class="comment">
+	<view class="container" />
+	<t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs" space-evenly="{{false}}">
+		<t-tab-panel label="评论" value="0">
+			<view wx:for="{{commentList}}" wx:key="id">
+
+			</view>
+		</t-tab-panel>
+		<!-- <t-tab-panel label="点赞" value="1" /> -->
+	</t-tabs>
+</view>

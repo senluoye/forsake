@@ -11,6 +11,7 @@ Page({
         id: 0, // 动态id
         dynamic: {}, // 动态VO内容
         isLoading: false, // 是否加载
+        commentList: {}, // 评论列表
     },
 
     /**
@@ -18,33 +19,99 @@ Page({
      */
     async onLoad(options) {
         this.setData({ isLoading: true })
-        const id = options.id === undefined ? 0 : options.id
 
-        const res = await myRequest.getDynamic("/api/dynamic/one/" + id)
+        const id = options.id === undefined ? -1 : options.id
+        this.setData({ id: id })
+
+        await this.getDynamic(id)
+        await this.getCommentList(id)
+
+        this.setData({ isLoading: false })
+    },
+
+    /**
+     * 获取动态详情
+     * @param {动态id} id 
+     */
+    getDynamic: async function (id) {
+        const token = wx.getStorageSync('token')
+        const res = await myRequest.getDynamic("/api/dynamic/one/" + id, token)
             .catch((e) => {
                 console.log(e)
                 return {}
             })
         if (JSON.stringify(res) == '{}' || res.code === -1 || res.code === null) {
-            this.setData({ isLoading: false, id: 0 })
+            this.setData({ isLoading: false, id: -1 })
+            showErrorMessage("获取学习动态失败", this)
+            return
+        }
+        const { data } = res;
+        console.log(data)
+        this.setData({ dynamic: data })
+    },
+
+    /**
+     * 获取动态评论
+     * @param {动态id} id 
+     */
+    getCommentList: async function (id) {
+        const res = await myRequest.postDynamic("/api/dynamic/comment/list/" + id, 0)
+            .catch((e) => {
+                console.log(e)
+                return {}
+            })
+        if (JSON.stringify(res) == '{}' || res.code === -1 || res.code === null) {
+            this.setData({ id: 0 })
+            showErrorMessage("获取学习动态失败", this)
+            return
+        }
+        const { data } = res
+        this.setData({ commentList: data, isLoading: false })
+    },
+
+    /**
+     * 关注
+     * @param {事件对象} e 
+     */
+    async follow(e) {
+        const token = wx.getStorageSync('token')
+        const res = await myRequest.postDynamic("/api/follow", { userId: this.data.dynamic.userId }, token)
+            .catch((e) => {
+                console.log(e)
+                return {}
+            })
+        if (JSON.stringify(res) == '{}' || res.code === -1 || res.code === null) {
+            this.setData({ id: 0 })
             showErrorMessage("获取学习动态失败", this)
             return
         }
 
-        const { data } = res;
-        this.setData({ dynamic: data, id: id, isLoading: false })
+        this.setData({
+            dynamic: {
+                ...this.data.dynamic,
+                isFollow: !this.data.dynamic.isFollow
+            }
+        })
+
+        const isFollow = this.data.dynamic.isFollow
+        if (isFollow) {
+            showTextMessage("关注成功", this)
+        } else {
+            showErrorMessage("取消关注成功", this)
+        }
     },
 
     // 预览图片
     previewImage: function (e) {
-        console.log(e);
+        // console.log(e);
         var current = e.currentTarget.dataset.src;
-        console.log(current);
+        // console.log(current);
         wx.previewImage({
             current: current, // 当前显示图片的http链接
             urls: [current]
         })
     },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -1,6 +1,6 @@
 <view class="foot">
 	<view class="comment">
-		<input type="text" placeholder="请输入评论" />
+		<input type="text" placeholder="    请输入评论" class="comment-input" bindtap="openKeyBorad" focus="auto" />
 	</view>
 	<view class="operator">
 		<view bindtap="star">

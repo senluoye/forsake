@@ -6,7 +6,7 @@
 }
 
 .scroll {
-	height: 930rpx;
+	height: 100vh;
 	background-color: white;
 }
 

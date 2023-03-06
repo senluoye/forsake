@@ -33,13 +33,19 @@
 
 .guanzhu-btn {
 	padding: 0;
-	line-height: 2;
-	width: 110rpx;
-	height: 40rpx;
-	font-size: 8px;
-	/* border: 1px solid red; */
+	line-height: 60rpx;
+	color: blue;
+	font-size: 25rpx;
 	background-color: white;
+	border: none;
+	border-radius: 0;
+	margin-left: 20rpx;
 }
+
+.guanzhu-btn::after {
+	border: 0;
+}
+
 
 .t {
 	height: 15rpx;
@@ -76,8 +82,18 @@
 }
 
 .image-content {
-	display: flex;
-	margin-top: 40rpx;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 90px);
+	grid-template-rows: 90px;
+	grid-auto-rows: 90px;
+	justify-content: center;
+	grid-gap: 10rpx;
+}
+
+.image {
+	width: 213rpx;
+	height: 213rpx;
+	border-radius: 5px;
 }
 
 .foot {
