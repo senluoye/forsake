@@ -66,7 +66,7 @@ public class FollowerController {
      * @return
      * @throws ServiceException
      */
-    @GetMapping("/list")
+    @PostMapping("/list")
     public ResVO<PageVO<List<UserFollowListVO>>> getFollowList(@RequestHeader("token") String token,
                                                                @RequestBody Long currentPage) throws ServiceException {
         Long userId = JwtUtil.getUserId(token);

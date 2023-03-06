@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserFollowListVO {
 
-    // 用户id
+    // 关注的人的id
     private Long userId;
 
     // 头像
@@ -19,5 +19,8 @@ public class UserFollowListVO {
 
     // 昵称
     private String nickName;
+
+    // 是否关注
+    private Boolean isFollow;
 
 }

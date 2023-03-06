@@ -17,7 +17,11 @@ import java.util.List;
 @Mapper
 public interface UserFollowMapper extends BaseMapper<UserFollow> {
 
-    @Select("select follower_id from user_follow where user_id = #{userId} limit #{offset}, 20")
+    @Select("select user_id " +
+            "from user_follow " +
+            "where follower_id = #{userId} " +
+            "and deleted = 0 " +
+            "limit #{offset}, 20")
     List<Long> selectUserFollowList(@Param("userId") Long userId, @Param("offset") Long offset);
 }
 

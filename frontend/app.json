@@ -56,6 +56,7 @@
         "t-search": "tdesign-miniprogram/search/search",
         "t-divider": "tdesign-miniprogram/divider/divider",
         "t-tabs": "tdesign-miniprogram/tabs/tabs",
-        "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel"
+        "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel",
+        "t-switch": "tdesign-miniprogram/switch/switch"
     }
 }

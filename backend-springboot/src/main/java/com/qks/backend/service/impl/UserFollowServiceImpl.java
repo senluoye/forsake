@@ -91,7 +91,7 @@ public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFol
         userFollowData.setFans(userFollowData.getFans() + 1);
         userFollowDataService.updateById(userFollowData);
 
-        return R.map("userFollowId", userFollow.getId());
+        return R.map("userFollowId", userFollow.getId(), "关注成功");
     }
 
     @Override
@@ -104,24 +104,27 @@ public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFol
 
     @Override
     public ResVO<PageVO<List<UserFollowListVO>>> getFollowList(Long userId, Long currentPage) {
+        // 关注的人的总数
         Long total = userFollowMapper.selectCount(
-                new LambdaQueryWrapper<UserFollow>().eq(UserFollow::getUserId, userId)
+                new LambdaQueryWrapper<UserFollow>().eq(UserFollow::getFollowerId, userId)
         );
 
-        List<Long> followerIdList = userFollowMapper.selectUserFollowList(
+        // 分页 关注的人的id
+        List<Long> followeIdList = userFollowMapper.selectUserFollowList(
                 userId, currentPage * PageEnum.DefaultNum.getPageNum()
         );
+
         List<UserFollowListVO> data = new ArrayList<>();
-        for (Long followerId : followerIdList) {
+        for (Long followerId : followeIdList) {
             User user = userService.getById(followerId);
             UserFollowListVO userFollowListVO = UserFollowListVO.builder()
                     .avatarUrl(user.getAvatarUrl())
                     .nickName(user.getNickName())
                     .userId(followerId)
+                    .isFollow(true)
                     .build();
             data.add(userFollowListVO);
         }
-
 
         PageVO<List<UserFollowListVO>> pageVO = new PageVO<>();
         pageVO.setTotal(total);

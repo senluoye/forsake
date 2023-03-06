@@ -3,6 +3,7 @@ const forsake = "http://forsake.cn:8081"
 const userUrl = forsake
 const dynamicUrl = local
 const ossUrl = forsake
+const followUrl = local
 
 const basePost = async (baseUrl, path, data, token) => {
 	const url = baseUrl + path
@@ -99,6 +100,19 @@ const myRequest = {
 
 	getOss: async (path, token) => {
 		return baseGet(ossUrl, path, token)
+	},
+
+	// Follow
+	postFollow: async (path, data, token) => {
+		return basePost(followUrl, path, data, token)
+	},
+
+	getFollow: async (path, token) => {
+		return baseGet(followUrl, path, token)
+	},
+
+	putFollow: async (path, data, token) => {
+		return basePut(followUrl, path, data, token)
 	},
 }
 

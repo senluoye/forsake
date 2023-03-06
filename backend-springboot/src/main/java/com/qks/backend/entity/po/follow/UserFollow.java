@@ -18,6 +18,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserFollow extends Model implements Serializable {
+
+    // 被关注的人
     private Long userId;
+
+    // 关注的人
     private Long followerId;
 }

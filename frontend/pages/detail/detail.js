@@ -75,6 +75,8 @@ Page({
      */
     async follow(e) {
         const token = wx.getStorageSync('token')
+        const isFollow = this.data.dynamic.isFollow
+
         const res = await myRequest.postDynamic("/api/follow", { userId: this.data.dynamic.userId }, token)
             .catch((e) => {
                 console.log(e)
@@ -82,7 +84,8 @@ Page({
             })
         if (JSON.stringify(res) == '{}' || res.code === -1 || res.code === null) {
             this.setData({ id: 0 })
-            showErrorMessage("获取学习动态失败", this)
+            if (isFollow) showErrorMessage("取消关注失败", this)
+            else showErrorMessage("关注失败", this)
             return
         }
 
@@ -93,7 +96,6 @@ Page({
             }
         })
 
-        const isFollow = this.data.dynamic.isFollow
         if (isFollow) {
             showTextMessage("关注成功", this)
         } else {
