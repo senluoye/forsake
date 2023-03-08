@@ -54,6 +54,7 @@ public class StarServiceImpl extends ServiceImpl<StarMapper, Star>
             User user = userMapper.selectById(star.getUserId());
             Integer flag = star.getFlag();
             Long recordId = star.getRecordId();
+
             String content;
             if (flag.equals(FlagEnum.Dynamic.getFlag())) {
                 content = dynamicMapper.selectById(recordId).getContent();
