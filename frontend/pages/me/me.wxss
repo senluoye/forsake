@@ -12,16 +12,19 @@
 }
 
 .top {
-	margin-top: 30rpx;
-	height: 220rpx;
-	width: 600rpx;
-	/* background-color: white; */
+	margin-top: 50rpx;
+	height: 180rpx;
+	width: 660rpx;
+	background-color: white;
+	border-radius: 20px 20px 0px 0px;
+	/* margin-bottom: 30rpx; */
 }
 
 .top-title {
 	height: 100%;
 	display: flex;
 	align-items: center;
+	margin-left: 60rpx;
 }
 
 .skull {
@@ -35,7 +38,24 @@
 	line-height: 48rpx;
 	color: #333;
 	font-weight: bold;
-	margin-left: 30rpx;
+}
+
+.block {
+	display: block;
+	width: 660rpx;
+	border-top-style: solid;
+	border-top-color: #FBEAE9;
+	border-bottom-style: solid;
+	border-bottom-color: #FBEAE9;
+	/* margin-bottom: 32rpx; */
+}
+
+.operator {
+	width: 660rpx;
+}
+
+.operator-item {
+	font-size: 25rpx;
 }
 
 .demo-section__wrapper {

@@ -4,6 +4,7 @@
 	<view class="notice" bindtap="toNotice">
 		<!-- <t-icon name="chat" size="48rpx" data-name="chat" bind:click="onIconTap" /> -->
 	</view>
+	<!-- 个人信息 -->
 	<view class="top">
 		<!-- 未登录 -->
 		<view class="top-title" wx:if="{{!isLogin}}" bindtap="login">
@@ -16,7 +17,16 @@
 			<span class="name">{{userInfo.nickName}}</span>
 		</view>
 	</view>
-	<!-- <view></view> -->
+	<!-- 工具 -->
+	<view class="operator">
+		<van-grid column-num="4">
+			<van-grid-item use-slot wx:for="{{operator}}" wx:key="id" class="operator-item" data-operator="{{item}}" bindtap="operatorHandler">
+				<image style="width: 50rpx; height: 50rpx;" src="{{item.image}}" />
+				<view>{{item.name}}</view>
+			</van-grid-item>
+		</van-grid>
+	</view>
+	<!-- 选项 -->
 	<view class="demo-section__wrapper">
 		<t-cell-group theme="card">
 			<t-cell title="联系我们" hover arrow>

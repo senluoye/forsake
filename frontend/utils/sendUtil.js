@@ -1,9 +1,10 @@
 const local = "http://localhost:8081"
 const forsake = "http://forsake.cn:8081"
 const userUrl = forsake
-const dynamicUrl = local
+const dynamicUrl = forsake
 const ossUrl = forsake
-const followUrl = local
+const followUrl = forsake
+const starUrl = forsake
 
 const basePost = async (baseUrl, path, data, token) => {
 	const url = baseUrl + path
@@ -113,6 +114,19 @@ const myRequest = {
 
 	putFollow: async (path, data, token) => {
 		return basePut(followUrl, path, data, token)
+	},
+
+	// star
+	postStar: async (path, data, token) => {
+		return basePost(starUrl, path, data, token)
+	},
+
+	getStar: async (path, token) => {
+		return baseGet(starUrl, path, token)
+	},
+
+	putStar: async (path, data, token) => {
+		return basePut(starUrl, path, data, token)
 	},
 }
 

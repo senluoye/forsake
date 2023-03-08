@@ -8,6 +8,29 @@ Page({
         isLogin: false,
         user: {},
         currAuthStep: 1,
+
+        operator: [
+            {
+                id: 0,
+                image: "https://guaduation.oss-cn-guangzhou.aliyuncs.com/operator/image/%E6%B5%8F%E8%A7%88%E5%8E%86%E5%8F%B2.png",
+                name: "浏览历史"
+            },
+            {
+                id: 1,
+                image: "https://guaduation.oss-cn-guangzhou.aliyuncs.com/operator/image/%E7%82%B9%E8%B5%9E.png",
+                name: "点赞"
+            },
+            {
+                id: 2,
+                image: "https://guaduation.oss-cn-guangzhou.aliyuncs.com/operator/image/%E6%94%B6%E8%97%8F.png",
+                name: "收藏"
+            },
+            {
+                id: 3,
+                image: "https://guaduation.oss-cn-guangzhou.aliyuncs.com/operator/image/%E5%8F%91%E5%B8%83.png",
+                name: "我的发布"
+            },
+        ]
     },
 
     async login() {
@@ -35,7 +58,6 @@ Page({
                 showErrorMessage(e, this)
                 return { isLogin: false }
             })
-        console.log(data)
 
         // 是否登陆成功
         if (data.isLogin) {
@@ -59,6 +81,35 @@ Page({
             wx.setStorageSync('userInfo', res.userInfo)
         })
     },
+
+    operatorHandler(e) {
+        const operatorId = e.currentTarget.dataset.operator.id
+        console.log(operatorId)
+        switch (operatorId) {
+            case 0:
+                this.goBrowser()
+                break
+            case 1:
+                this.goStar()
+                break
+            case 2:
+                this.goCollect()
+                break
+            case 3:
+                this.goPublish()
+                break
+            default:
+        }
+    },
+
+    goBrowser() { },
+    goStar() {
+        wx.navigateTo({
+            url: '/pages/star/star',
+        })
+    },
+    goCollect() { },
+    goPublish() { },
 
     logout() {
         wx.clearStorageSync();

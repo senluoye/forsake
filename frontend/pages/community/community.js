@@ -91,8 +91,10 @@ Page({
         return 0
     },
 
-    search() {
-        console.log("??")
+    goSearch() {
+        wx.navigateTo({
+            url: '/pages/search/search',
+        })
     },
 
     /**

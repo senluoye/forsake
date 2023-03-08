@@ -1,7 +1,7 @@
 package com.qks.backend.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qks.backend.entity.po.DynamicStar;
+import com.qks.backend.entity.po.Star;
 
 /**
  * @author 15998
@@ -9,7 +9,7 @@ import com.qks.backend.entity.po.DynamicStar;
  * @createDate 2023-01-15 12:51:17
  * @Entity generator.entity.DynamicCollect
  */
-public interface DynamicStarMapper extends BaseMapper<DynamicStar> {
+public interface DynamicStarMapper extends BaseMapper<Star> {
 
 }
 

@@ -1,4 +1,3 @@
-// pages/detail/detail.js
 import { myRequest } from '../../utils/sendUtil';
 import { showErrorMessage, showTextMessage } from "../../utils/feedback";
 
@@ -46,7 +45,7 @@ Page({
             return
         }
         const { data } = res;
-        console.log(data)
+        // console.log(data)
         this.setData({ dynamic: data })
     },
 

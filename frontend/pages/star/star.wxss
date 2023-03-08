@@ -1,0 +1,50 @@
+.scroll {
+	height: 100vh;
+	background-color: white;
+}
+
+.note {
+	width: 60rpx;
+	font-size: 20rpx;
+}
+
+.topic {
+	height: 100rpx;
+	width: 100%;
+	display: flex;
+}
+
+.avatar {
+	float: left;
+	margin-top: 15rpx;
+	margin-left: 20rpx;
+	margin-right: 20rpx;
+}
+
+.top-center {
+	margin-top: -30rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 30rpx;
+	width: 300rpx;
+}
+
+.name {
+	font-weight: 700;
+	font-size: 35rpx;
+}
+
+.t {
+	height: 15rpx;
+}
+
+.main-content {
+	margin-left: 15rpx;
+}
+
+.content {
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+	font-size: smaller;
+}

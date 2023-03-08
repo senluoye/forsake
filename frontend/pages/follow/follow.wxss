@@ -1,7 +1,3 @@
-.avatar {
-	width: 100rpx;
-}
-
 .note {
 	width: 60rpx;
 	font-size: 20rpx;

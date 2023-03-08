@@ -6,7 +6,10 @@
         "pages/publish/publish",
         "pages/detail/detail",
         "pages/collect/collect",
-        "pages/browse/browse"
+        "pages/browse/browse",
+        "pages/search/search",
+        "pages/star/star",
+        "pages/user/user"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -57,6 +60,10 @@
         "t-divider": "tdesign-miniprogram/divider/divider",
         "t-tabs": "tdesign-miniprogram/tabs/tabs",
         "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel",
-        "t-switch": "tdesign-miniprogram/switch/switch"
+        "t-switch": "tdesign-miniprogram/switch/switch",
+        "t-grid": "tdesign-miniprogram/grid/grid",
+        "t-grid-item": "tdesign-miniprogram/grid/grid-item",
+        "van-grid": "@vant/weapp/grid/index",
+        "van-grid-item": "@vant/weapp/grid-item/index"
     }
 }

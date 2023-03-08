@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qks.backend.dao.*;
+import com.qks.backend.entity.enums.FlagEnum;
 import com.qks.backend.entity.enums.PageEnum;
-import com.qks.backend.entity.enums.audit.AuditFlagEnum;
 import com.qks.backend.entity.enums.audit.AuditStateEnum;
 import com.qks.backend.entity.po.*;
 import com.qks.backend.entity.vo.*;
@@ -193,7 +193,7 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, RecordAudit>
             throw new ServiceException("数据不存在，审核失败");
         }
 
-        if (!recordAudit.getFlag().equals(AuditFlagEnum.Dynamic.getFlag())) {
+        if (!recordAudit.getFlag().equals(FlagEnum.Dynamic.getFlag())) {
             throw new ServiceException("数据不存在");
         }
 
@@ -216,7 +216,7 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, RecordAudit>
             throw new ServiceException("数据不存在，审核失败");
         }
 
-        if (!recordAudit.getFlag().equals(AuditFlagEnum.Competition.getFlag())) {
+        if (!recordAudit.getFlag().equals(FlagEnum.Competition.getFlag())) {
             throw new ServiceException("数据不存在");
         }
 
@@ -239,7 +239,7 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, RecordAudit>
             throw new ServiceException("数据不存在，审核失败");
         }
 
-        if (!recordAudit.getFlag().equals(AuditFlagEnum.Work.getFlag())) {
+        if (!recordAudit.getFlag().equals(FlagEnum.Work.getFlag())) {
             throw new ServiceException("数据不存在");
         }
 
@@ -261,7 +261,7 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, RecordAudit>
         Integer currentPage = searchParams.getCurrentPage();
         Page<RecordAudit> recordAuditPage = new Page<>(currentPage, PageEnum.DefaultNum.getPageNum());
         LambdaQueryWrapper<RecordAudit> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(RecordAudit::getFlag, AuditFlagEnum.Dynamic.getFlag()).orderByDesc(RecordAudit::getCreateAt);
+        wrapper.eq(RecordAudit::getFlag, FlagEnum.Dynamic.getFlag()).orderByDesc(RecordAudit::getCreateAt);
         switch (searchParams.getState()) {
             case -1: // 不通过的记录
                 wrapper.eq(RecordAudit::getState, AuditStateEnum.NoPass.getState());

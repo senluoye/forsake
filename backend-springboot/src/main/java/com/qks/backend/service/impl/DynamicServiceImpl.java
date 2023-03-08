@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qks.backend.dao.*;
+import com.qks.backend.entity.enums.FlagEnum;
 import com.qks.backend.entity.enums.PageEnum;
-import com.qks.backend.entity.enums.audit.AuditFlagEnum;
 import com.qks.backend.entity.enums.audit.AuditStateEnum;
 import com.qks.backend.entity.po.*;
 import com.qks.backend.entity.po.follow.UserFollow;
@@ -47,9 +47,6 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
     private UserMapper userMapper;
 
     @Resource
-    private DynamicCommentMapper dynamicCommentMapper;
-
-    @Resource
     private DynamicStarMapper dynamicStarMapper;
 
     @Resource
@@ -72,14 +69,14 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
 
     @Override
     public ResVO<PageVO<List<FrontendDynamicItemVO>>> getDynamicList(String token, Long currentPage) throws ServiceException {
-        long total = dynamicMapper.selectTotal(AuditFlagEnum.Dynamic.getFlag(), AuditStateEnum.Pass.getState());
+        long total = dynamicMapper.selectTotal(FlagEnum.Dynamic.getFlag(), AuditStateEnum.Pass.getState());
         if (currentPage != 0 && total <= currentPage * PageEnum.DefaultNum.getPageNum()) {
             throw new ServiceException("后面没有数据啦");
         }
 
         // 动态列表
         List<Dynamic> dynamicList = dynamicMapper.selectDynamicList(
-                AuditFlagEnum.Dynamic.getFlag(), AuditStateEnum.Pass.getState(), currentPage * 20
+                FlagEnum.Dynamic.getFlag(), AuditStateEnum.Pass.getState(), currentPage * 20
         );
 
         // 前端vo
@@ -123,7 +120,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         RecordAudit recordAudit = RecordAudit.builder()
                 .recordId(dynamic.getId())
                 .state(AuditStateEnum.UnCheck.getState())
-                .flag(AuditFlagEnum.Dynamic.getFlag())
+                .flag(FlagEnum.Dynamic.getFlag())
                 .build();
         recordAuditMapper.insert(recordAudit);
 
@@ -172,23 +169,25 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
             throw new ServiceException("动态不存在");
         }
 
-        DynamicStar dynamicStar = dynamicStarMapper.selectOne(
-                new QueryWrapper<DynamicStar>().eq("dynamic_id", dynamicId)
+        Star star = dynamicStarMapper.selectOne(
+                new LambdaQueryWrapper<Star>().eq(Star::getRecordId, dynamicId)
         );
-        if (dynamicStar == null) {
+        if (star == null) {
             // 不存在点赞记录，就创建，并删除动态点赞数
             dynamic.setLikeCount(dynamic.getLikeCount() + 1);
 
-            dynamicStar = new DynamicStar();
-            dynamicStar.setDynamicId(dynamicId);
-            dynamicStar.setUserId(userId);
-            dynamicStarMapper.insert(dynamicStar);
+            star = new Star();
+            star.setRecordId(dynamicId);
+            star.setUserId(userId);
+            star.setFlag(FlagEnum.Dynamic.getFlag());
+
+            dynamicStarMapper.insert(star);
             dynamicMapper.updateLikeCount(dynamicId, dynamic.getLikeCount());
         } else {
             // 存在点赞记录，就删除。并减少动态点赞数
             dynamic.setLikeCount(dynamic.getLikeCount() - 1);
 
-            dynamicStarMapper.deleteById(dynamicStar.getId());
+            dynamicStarMapper.deleteById(star.getId());
             dynamicMapper.updateLikeCount(dynamicId, dynamic.getLikeCount());
         }
 
@@ -234,10 +233,10 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         User user = userMapper.selectById(dynamic.getUserId());
 
         // 点赞情况
-        DynamicStar dynamicStar = dynamicStarMapper.selectOne(
-                new QueryWrapper<DynamicStar>()
-                        .eq("dynamic_id", dynamic.getId())
-                        .eq("user_id", userId)
+        Star star = dynamicStarMapper.selectOne(
+                new LambdaQueryWrapper<Star>()
+                        .eq(Star::getRecordId, dynamic.getId())
+                        .eq(Star::getUserId, userId)
         );
 
         // 获取动态文件路径
@@ -266,7 +265,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         data.setDynamicFileList(dynamicFileList);
         data.setAvatarUrl(user.getAvatarUrl());
         data.setCommentCount(dynamic.getCommentCount());
-        data.setIsLike(dynamicStar != null);
+        data.setIsLike(star != null);
         data.setIsCollect(dynamicCollect != null);
         return data;
     }
@@ -281,10 +280,10 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         );
 
         // 获取自身点赞情况
-        DynamicStar dynamicStar = dynamicStarMapper.selectOne(
-                new LambdaQueryWrapper<DynamicStar>()
-                        .eq(DynamicStar::getDynamicId, dynamic.getId())
-                        .eq(DynamicStar::getUserId, user.getId())
+        Star star = dynamicStarMapper.selectOne(
+                new LambdaQueryWrapper<Star>()
+                        .eq(Star::getRecordId, dynamic.getId())
+                        .eq(Star::getUserId, user.getId())
         );
 
         // 获取自身收藏情况
@@ -308,7 +307,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic>
         data.setDynamicFileList(dynamicFileList);
         data.setAvatarUrl(user.getAvatarUrl());
         data.setCommentCount(dynamic.getCommentCount());
-        data.setIsLike(dynamicStar != null);
+        data.setIsLike(star != null);
         data.setIsCollect(dynamicCollect != null);
         data.setIsFollow(userFollow != null);
         data.setUserId(user.getId());

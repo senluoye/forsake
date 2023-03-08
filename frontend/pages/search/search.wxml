@@ -1,0 +1,12 @@
+<view>
+	<view class="example-search">
+		<t-search model:value="{{value}}" placeholder="搜索你想要的内容" shape="round" />
+	</view>
+	<view>
+		<scroll-view class="scroll" enhanced :show-scrollbar="false" scroll-y refresher-triggered="{{isRefresh}}" lower-threshold='100' refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-background="#E3E3E3" bindrefresherrefresh="pullDownRefresh" bindscrolltolower="loadMore">
+			<view class="dynamic-item" wx:for="{{dynamic.list}}" wx:key="id">
+				<dynamic dynamic="{{item}}" />
+			</view>
+		</scroll-view>
+	</view>
+</view>

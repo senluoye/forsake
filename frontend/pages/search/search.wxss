@@ -1,0 +1,13 @@
+.example-search {
+	background-color: #fff;
+	padding: 16rpx 32rpx;
+  }
+  
+  .example-search:not(:last-child) {
+	margin-bottom: 32rpx;
+  }
+
+.scroll {
+	height: 100vh;
+	background-color: white;
+}

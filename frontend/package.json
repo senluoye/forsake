@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vant/weapp": "^1.10.14",
     "ali-oss": "^6.17.1",
     "miniprogram-api-promise": "^1.0.4",
     "tdesign-miniprogram": "^0.32.0"
