@@ -7,10 +7,12 @@ import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
 import com.qks.backend.entity.vo.ResVO;
+import com.qks.backend.exception.ServiceException;
 import com.qks.backend.service.OssService;
 import com.qks.backend.utls.ConstantPropertiesUtil;
 import com.qks.backend.utls.R;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ import java.util.*;
  * @Create 2023-01-27 21:00
  */
 @Service
+@Transactional(rollbackFor = ServiceException.class)
 public class OssServiceImpl implements OssService {
 
     private static final String DYNAMIC = "dynamic/";

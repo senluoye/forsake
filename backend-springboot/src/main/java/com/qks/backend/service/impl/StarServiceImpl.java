@@ -11,15 +11,18 @@ import com.qks.backend.entity.po.User;
 import com.qks.backend.entity.vo.PageVO;
 import com.qks.backend.entity.vo.ResVO;
 import com.qks.backend.entity.vo.StarDynamicVO;
+import com.qks.backend.exception.ServiceException;
 import com.qks.backend.service.StarService;
 import com.qks.backend.utls.R;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = ServiceException.class)
 public class StarServiceImpl extends ServiceImpl<StarMapper, Star>
         implements StarService {
 

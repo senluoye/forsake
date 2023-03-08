@@ -17,6 +17,7 @@ import com.qks.backend.service.UserFollowService;
 import com.qks.backend.service.UserService;
 import com.qks.backend.utls.R;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.Map;
  * @createDate 2023-02-22 20:03:20
  */
 @Service
+@Transactional(rollbackFor = ServiceException.class)
 public class UserFollowServiceImpl extends ServiceImpl<UserFollowMapper, UserFollow>
         implements UserFollowService {
 
